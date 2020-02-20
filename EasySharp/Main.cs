@@ -19,8 +19,6 @@ using static SharpSkin_dll.Structs;
 
 namespace SharpSkin_dll
 {
-
-
     public class Main : IEntryPoint
     {        
         public Main(RemoteHooking.IContext context)
@@ -48,6 +46,7 @@ namespace SharpSkin_dll
 
             //weapons.ReadyConfig();
             //CustomSkins.Init();
+
             #region Loop
             while (!bUnload)
             {

@@ -18,3 +18,4 @@ C:\Users\EasyHax\source\EasySharp\EasySharp\EasySharp\obj\Debug\EasySharp.dll
 C:\Users\EasyHax\source\EasySharp\EasySharp\EasySharp\obj\Debug\EasySharp.pdb
 C:\Users\EasyHax\source\EasySharp\EasySharp.dll
 C:\Users\EasyHax\source\EasySharp\EasySharp.pdb
+C:\Users\EasyHax\source\EasySharp\EasySharp\EasySharp\obj\Debug\EasySharp.csprojAssemblyReference.cache
