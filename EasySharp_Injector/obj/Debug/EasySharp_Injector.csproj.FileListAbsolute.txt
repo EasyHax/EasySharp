@@ -1,0 +1,12 @@
+C:\Users\EasyHax\source\EasySharp\EasySharp\EasySharp_Injector\obj\Debug\EasySharp_Injector.csproj.CopyComplete
+C:\Users\EasyHax\source\EasySharp\EasyHook32.dll
+C:\Users\EasyHax\source\EasySharp\EasyHook32Svc.exe
+C:\Users\EasyHax\source\EasySharp\EasyHook64.dll
+C:\Users\EasyHax\source\EasySharp\EasyHook64Svc.exe
+C:\Users\EasyHax\source\EasySharp\EasyLoad32.dll
+C:\Users\EasyHax\source\EasySharp\EasyLoad64.dll
+C:\Users\EasyHax\source\EasySharp\EasySharp_Injector.exe.config
+C:\Users\EasyHax\source\EasySharp\EasySharp\EasySharp_Injector\obj\Debug\EasySharp_Injector.exe
+C:\Users\EasyHax\source\EasySharp\EasySharp\EasySharp_Injector\obj\Debug\EasySharp_Injector.pdb
+C:\Users\EasyHax\source\EasySharp\EasySharp_Injector.exe
+C:\Users\EasyHax\source\EasySharp\EasySharp_Injector.pdb

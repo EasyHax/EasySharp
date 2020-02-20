@@ -1,0 +1,5 @@
+C:\Users\EasyHax\source\EasySharp\EasySharp\StructsGenerator\bin\Debug\StructsGenerator.exe.config
+C:\Users\EasyHax\source\EasySharp\EasySharp\StructsGenerator\bin\Debug\StructsGenerator.exe
+C:\Users\EasyHax\source\EasySharp\EasySharp\StructsGenerator\bin\Debug\StructsGenerator.pdb
+C:\Users\EasyHax\source\EasySharp\EasySharp\StructsGenerator\obj\Debug\StructsGenerator.exe
+C:\Users\EasyHax\source\EasySharp\EasySharp\StructsGenerator\obj\Debug\StructsGenerator.pdb
