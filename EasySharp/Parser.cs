@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SharpSkin_dll
 {
@@ -89,7 +90,7 @@ namespace SharpSkin_dll
             return 0f;
         }
 
-        public static void AddNewKit(this System.Windows.Forms.ListBox.ObjectCollection objectCollection, WeaponKit weaponKit)
+        public static void AddNewKit(this ListBox.ObjectCollection objectCollection, WeaponKit weaponKit)
         {
             var str = string.Format("{0} \t {1} \t {2} \t {3} \t {4} \t {5}",
                 weaponKit.skin_id,

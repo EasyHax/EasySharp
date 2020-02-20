@@ -18,6 +18,7 @@ namespace GenerateStructs
 
             foreach ( var c in classes )
             {
+
                 var props = c.Split('\n');
 
                 if ( props.Length <= 1 ) 

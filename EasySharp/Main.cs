@@ -30,7 +30,7 @@ namespace SharpSkin_dll
         public unsafe void Run(RemoteHooking.IContext context)
         {
             Thread.CurrentThread.SetApartmentState(ApartmentState.STA);
-            //Console.SetWindowSize(50, 30);
+
             WinApi.AllocConsole();
             Display.Init();
             Console.Clear();
