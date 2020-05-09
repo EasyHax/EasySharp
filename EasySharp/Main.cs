@@ -147,7 +147,7 @@ namespace SharpSkin_dll
 
             hk_FrameStageNotify  = new EzyHook<FrameStageNotify>(37, g_Client.addr,    hkFrameStageNotify_callback, out o_FrameStageNotify);
             //hk_CreateMove        = new EzyHook<CreateMove>      (22, g_Client.addr,    hkCreateMove_callback,       out o_CreateMove      );
-            //hk_PaintTraverse     = new EzyHook<PaintTraverse>   (41, g_Panel.addr ,    hkPaintTraverse_callback,    out o_PaintTraverse   );
+            hk_PaintTraverse     = new EzyHook<PaintTraverse>   (41, g_Panel.addr ,    hkPaintTraverse_callback,    out o_PaintTraverse   );
             //hk_DrawModelExecute  = new EzyHook<DrawModelExecute>(21, g_MdlRender.addr, hkDrawModelExecute_callback, out o_DrawModelExecute);
             //hk_FindModel         = new EzyHook<FindModel>       (10, g_MdlCache.addr,  hkFindModel_callback,        out o_FindModel       );
 
