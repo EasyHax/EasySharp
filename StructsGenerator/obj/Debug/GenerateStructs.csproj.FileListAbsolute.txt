@@ -1,5 +1,0 @@
-C:\Users\EasyHax\source\EasySharp\EasySharp\DumpStructs\bin\Debug\GenerateStructs.exe.config
-C:\Users\EasyHax\source\EasySharp\EasySharp\DumpStructs\bin\Debug\GenerateStructs.exe
-C:\Users\EasyHax\source\EasySharp\EasySharp\DumpStructs\bin\Debug\GenerateStructs.pdb
-C:\Users\EasyHax\source\EasySharp\EasySharp\DumpStructs\obj\Debug\GenerateStructs.exe
-C:\Users\EasyHax\source\EasySharp\EasySharp\DumpStructs\obj\Debug\GenerateStructs.pdb

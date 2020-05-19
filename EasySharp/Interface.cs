@@ -71,6 +71,7 @@ namespace SharpSkin_dll
 
         public static implicit operator Vector(float f) => new Vector(f);
 
+        // Angles between two vectors
         public static Vector operator ^(Vector v1, Vector v2)
         {
             var difference = v1 - v2;
@@ -87,6 +88,7 @@ namespace SharpSkin_dll
             return vAngle;
         }
 
+        // Fov between a vector and your viewangles
         public static double operator ~(Vector v1)
         {
             var difference = v1 - g_Engine.GetViewAngles();
