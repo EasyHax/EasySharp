@@ -20,3 +20,11 @@ C:\Users\EasyHax\Desktop\EasySharp-master\EasySharp\obj\Debug\EasySharp.dll
 C:\Users\EasyHax\Desktop\EasySharp-master\EasySharp\obj\Debug\EasySharp.pdb
 C:\Users\EasyHax\Desktop\EasySharp.dll
 C:\Users\EasyHax\Desktop\EasySharp.pdb
+C:\bin\Debug\EasyHook32.dll
+C:\bin\Debug\EasyHook32Svc.exe
+C:\bin\Debug\EasyHook64.dll
+C:\bin\Debug\EasyHook64Svc.exe
+C:\bin\Debug\EasyLoad32.dll
+C:\bin\Debug\EasyLoad64.dll
+C:\bin\Debug\EasySharp.dll
+C:\bin\Debug\EasySharp.pdb
