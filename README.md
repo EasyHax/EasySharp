@@ -6,16 +6,18 @@ A C# internal base for CSGO with an implemented skinchanger.
 
 ## Installation
 
-1. Go in Visual Studio, in Nuget Package Manager, in Manage Nuget Packages for Solution
-2. Search for EasyHook and install the Nuget for SharpSkin and SharpSkin_Injector.
-3. Compile
-4. Put in the same folder :
+1. Compile
+2. Put in the same folder :
   - EasyHook.dll
   - EasyLoad32.dll
   - EasyHook32.dll
   - EasySharp.dll
   - EasySharp_Injector.exe
-5. Run the injector
+3. Run the injector
+
+## Use the preset
+
+Put ```skins_presets.cfg``` in ```Documents\SharpSkin\skins_preset.cfg```
 
 ## 
 
