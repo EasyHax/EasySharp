@@ -77,9 +77,9 @@ namespace SharpSkin_dll
         {
             weapons1.Show();
             knife1.Hide();
-            //hax1.Hide();
+            hax1.Hide();
             profile1.Hide();
-            //hax2.Hide();
+            hax2.Hide();
             chams1.Hide();
         }
 
@@ -87,9 +87,9 @@ namespace SharpSkin_dll
         {
             weapons1.Hide();
             knife1.Show();
-            //hax1.Hide();
+            hax1.Hide();
             profile1.Hide();
-            //hax2.Hide();
+            hax2.Hide();
             chams1.Hide();
         }
 
@@ -97,9 +97,9 @@ namespace SharpSkin_dll
         {
             weapons1.Hide();
             knife1.Hide();
-            //hax1.Show();
+            hax1.Show();
             profile1.Hide();
-            //hax2.Hide();
+            hax2.Hide();
             chams1.Hide();
         }
 
@@ -107,9 +107,9 @@ namespace SharpSkin_dll
         {
             weapons1.Hide();
             knife1.Hide();
-            //hax1.Hide();
+            hax1.Hide();
             profile1.Show();
-            //hax2.Hide();
+            hax2.Hide();
             chams1.Hide();
         }
 
@@ -122,9 +122,9 @@ namespace SharpSkin_dll
         {
             weapons1.Hide();
             knife1.Hide();
-            //hax1.Hide();
+            hax1.Hide();
             profile1.Hide();
-            //hax2.Show();
+            hax2.Show();
             chams1.Hide();
         }
 
@@ -137,9 +137,9 @@ namespace SharpSkin_dll
         {
             weapons1.Hide();
             knife1.Hide();
-            //hax1.Hide();
+            hax1.Hide();
             profile1.Hide();
-            //hax2.Show();
+            hax2.Hide();
             chams1.Show();
         }
     }

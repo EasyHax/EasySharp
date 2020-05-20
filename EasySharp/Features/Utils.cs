@@ -23,7 +23,11 @@ namespace SharpSkin_dll
             for ( var i = 0; i < g_Engine.GetMaxClients(); i++ )
             {
                 var player = (BasePlayer)g_Entity.GetClientEntity(i);
-                if ( !player && player != g_LocalPlayer && player.isAlive )
+
+                if ( !player )
+                    continue;
+
+                if ( player != g_LocalPlayer && player.isAlive )
                     players.Add( player );
             }
 
@@ -53,7 +57,7 @@ namespace SharpSkin_dll
             }
 
             atAngle = best_angle;
-            return !enemy;
+            return enemy;
         }
     }
 }

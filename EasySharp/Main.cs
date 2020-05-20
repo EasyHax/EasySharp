@@ -145,6 +145,8 @@ namespace SharpSkin_dll
 
             Display.WriteLine("\n[!] Hooking game functions..", ConsoleColor.DarkYellow);
 
+            // Uncomment what you need
+
             hk_FrameStageNotify  = new EzyHook<FrameStageNotify>(37, g_Client.addr,    hkFrameStageNotify_callback, out o_FrameStageNotify);
             //hk_CreateMove        = new EzyHook<CreateMove>      (22, g_Client.addr,    hkCreateMove_callback,       out o_CreateMove      );
             hk_PaintTraverse     = new EzyHook<PaintTraverse>   (41, g_Panel.addr ,    hkPaintTraverse_callback,    out o_PaintTraverse   );

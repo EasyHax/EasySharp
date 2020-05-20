@@ -140,6 +140,9 @@ namespace SharpSkin_dll
             //if (WinApi.isKeyDown(VirtualKeys.A))
             //    SharpSkin.g_LocalPlayer.GetHitboxPos(Hitboxes.HITBOX_HEAD);
 
+            if ( form.hax1.aim_enabled.Checked )
+                Task.Factory.StartNew( () => Features.Legit.Aimbot.Do() );
+
             /*
             Task.Factory.StartNew(() => BHop.Do());
             Task.Factory.StartNew(() => Trigger.Do());

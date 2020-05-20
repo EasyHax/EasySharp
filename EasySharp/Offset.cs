@@ -1239,7 +1239,7 @@ namespace SharpSkin_dll
             public int m_hSurvivalAssassinationTarget {          get => *(int*)(addr + Offset.DT_CSPlayer.m_hSurvivalAssassinationTarget);                   set => *(int*)(addr + Offset.DT_CSPlayer.m_hSurvivalAssassinationTarget) = value;                   }
             public int m_flHealthShotBoostExpirationTime {       get => *(int*)(addr + Offset.DT_CSPlayer.m_flHealthShotBoostExpirationTime);                set => *(int*)(addr + Offset.DT_CSPlayer.m_flHealthShotBoostExpirationTime) = value;                }
             public int m_flLastExoJumpTime {                     get => *(int*)(addr + Offset.DT_CSPlayer.m_flLastExoJumpTime);                              set => *(int*)(addr + Offset.DT_CSPlayer.m_flLastExoJumpTime) = value;                              }
-            public int m_vecOrigin {                             get => *(int*)(addr + Offset.DT_CSPlayer.m_vecOrigin);                                      set => *(int*)(addr + Offset.DT_CSPlayer.m_vecOrigin) = value;                                      }
+            public Vector m_vecOrigin {                          get => *(Vector*)(addr + Offset.DT_CSPlayer.m_vecOrigin);                                   set => *(Vector*)(addr + Offset.DT_CSPlayer.m_vecOrigin) = value;                                      }
             public int m_vecOrigin_2 {                           get => *(int*)(addr + Offset.DT_CSPlayer.m_vecOrigin_2);                                    set => *(int*)(addr + Offset.DT_CSPlayer.m_vecOrigin_2) = value;                                    }
             public int m_flStamina {                             get => *(int*)(addr + Offset.DT_CSPlayer.m_flStamina);                                      set => *(int*)(addr + Offset.DT_CSPlayer.m_flStamina) = value;                                      }
             public int m_iDirection {                            get => *(int*)(addr + Offset.DT_CSPlayer.m_iDirection);                                     set => *(int*)(addr + Offset.DT_CSPlayer.m_iDirection) = value;                                     }
@@ -2441,8 +2441,11 @@ namespace SharpSkin_dll
 
             bool did = false;
 
+            // Not working at all
             public Vector GetHitboxPos(Hitboxes hitbox)
             {
+                return new Vector();
+
                 if (!did)
                 {
                     var matrix = Marshal.AllocHGlobal(48);

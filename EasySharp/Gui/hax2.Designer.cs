@@ -426,10 +426,10 @@
         public System.Windows.Forms.Label label10;
         public System.Windows.Forms.CheckBox glow;
         public System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Panel panel6;
+        public System.Windows.Forms.Panel panel6;
         public System.Windows.Forms.Label label4;
         public System.Windows.Forms.CheckBox wall_enabled;
-        private System.Windows.Forms.Panel panel5;
+        public System.Windows.Forms.Panel panel5;
         public System.Windows.Forms.Label label8;
         private System.Windows.Forms.Panel panel9;
         public System.Windows.Forms.Label label5;
@@ -438,12 +438,12 @@
         public System.Windows.Forms.Label label2;
         public System.Windows.Forms.CheckBox enemy_fromcolor;
         public System.Windows.Forms.CheckBox ally_fromcolor;
-        private System.Windows.Forms.ColorDialog colorDialog_allies;
-        private System.Windows.Forms.ColorDialog colorDialog_enemies;
+        public System.Windows.Forms.ColorDialog colorDialog_allies;
+        public System.Windows.Forms.ColorDialog colorDialog_enemies;
         public System.Windows.Forms.Label label6;
         public System.Windows.Forms.Label label9;
         public System.Windows.Forms.CheckBox ally_health_based;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.ColorDialog colorDialog_box;
+        public System.Windows.Forms.Button button3;
+        public System.Windows.Forms.ColorDialog colorDialog_box;
     }
 }
