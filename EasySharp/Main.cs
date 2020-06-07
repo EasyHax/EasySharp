@@ -106,9 +106,9 @@ namespace SharpSkin_dll
         {
             Display.WriteLine("[!] Loading Interfaces..", ConsoleColor.DarkYellow);
 
-            g_Client        = new Client       (Interface.CreateInterface("VClient018"          , "client_panorama.dll"));
+            g_Client        = new Client       (Interface.CreateInterface("VClient018"          , "client.dll"));
             g_Engine        = new Engine       (Interface.CreateInterface("VEngineClient014"    , "engine.dll"         ));
-            g_Entity        = new Entity       (Interface.CreateInterface("VClientEntityList003", "client_panorama.dll"));
+            g_Entity        = new Entity       (Interface.CreateInterface("VClientEntityList003", "client.dll"));
             g_MdlInfo       = new ModelInfo    (Interface.CreateInterface("VModelInfoClient004" , "engine.dll"         ));
             g_EngineTrace   = new EngineTrace  (Interface.CreateInterface("EngineTraceClient004", "engine.dll"         ));
             g_DbgOverlay    = new DebugOverlay (Interface.CreateInterface("VDebugOverlay004"    , "engine.dll"         ));
