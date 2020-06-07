@@ -6,13 +6,8 @@ A C# internal base for CSGO with an implemented skinchanger.
 
 ## Installation
 
-1. Compile
-2. Put in the same folder :
-  - EasyHook.dll
-  - EasyLoad32.dll
-  - EasyHook32.dll
-  - EasySharp.dll
-  - EasySharp_Injector.exe
+1. Compile in release
+2. Navigate to {ProjectRoot}/Release/
 3. Run the injector
 
 ## Use the preset
