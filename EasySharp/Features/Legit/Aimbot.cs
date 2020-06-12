@@ -18,7 +18,7 @@ namespace SharpSkin_dll.Features.Legit
             if(Utils.GetClosest( Utils.GetEnemies(), Hitboxes.HITBOX_HEAD, out var enemy, out var angle ) )
             {
                 var new_angle = angle - g_LocalPlayer.m_aimPunchAngle * 2f;
-                g_Engine.SetViewAngles( angle - g_LocalPlayer.m_aimPunchAngle * 2f );
+                g_Engine.SetViewAngles( new_angle );
             }
         }
     }
