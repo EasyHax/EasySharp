@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Runtime.InteropServices;
-using EasyHook;
 using System.Threading;
 using System.Windows.Forms;
-using System.IO;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Drawing;
-using System.Reflection;
-using System.Reflection.Emit;
 using System.Windows.Input;
-using System.ComponentModel;
-using System.Numerics;
+
+using RGiesecke.DllExport;
 
 using static SharpSkin_dll.SharpSkin;
 using static SharpSkin_dll.Hooks;
@@ -19,63 +13,59 @@ using static SharpSkin_dll.Structs;
 
 namespace SharpSkin_dll
 {
-    public class Main : IEntryPoint
-    {        
-        public Main(RemoteHooking.IContext context)
+    public static class Main
+    {
+        [DllExport( "Entry" )]
+        public static unsafe void Entry()
         {
-
+            Thread.CurrentThread.SetApartmentState( ApartmentState.STA );
+            Execute();
         }
 
         [STAThread]
-        public unsafe void Run(RemoteHooking.IContext context)
+        public static unsafe void Execute()
         {
-            Thread.CurrentThread.SetApartmentState(ApartmentState.STA);
-
-            WinApi.AllocConsole();
-            Display.Init();
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Magenta;
-
-            //VpkParser.Do();
-            //return;
-
-            Display.UnderLine("=====| SharpSkin |=====\n", ConsoleColor.DarkGreen);
-            Init();
-
-            //new Task(Features.TriggerBot.Do).Start();
-
-            //weapons.ReadyConfig();
-            //CustomSkins.Init();
-
-            #region Loop
-            while (!bUnload)
+            try
             {
-                try
-                {                 
-                    if (Keyboard.IsKeyDown(Key.Insert))
+                WinApi.AllocConsole();
+                Display.Init();
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Magenta;
+
+                //VpkParser.Do();
+                //return;
+                Display.UnderLine( "=====| SharpSkin |=====\n", ConsoleColor.DarkGreen );
+                Init();
+
+                //new Task(Features.TriggerBot.Do).Start();
+
+                //weapons.ReadyConfig();
+                //CustomSkins.Init();
+
+                #region Loop
+                while ( !bUnload )
+                {
+                    if ( Keyboard.IsKeyDown( Key.Insert ) )
                     {
-                        if (!form.Visible) new Task(() => form.ShowDialog()).Start();
-                        else new MethodInvoker(form.Hide).BeginInvoke(null, null);
-                        Thread.Sleep(150);
+                        if ( !form.Visible ) new Task( () => form.ShowDialog() ).Start();
+                        else new MethodInvoker( form.Hide ).BeginInvoke( null, null );
+                        Thread.Sleep( 150 );
                     }
-                    if (Keyboard.IsKeyDown(Key.Delete))
+                    if ( Keyboard.IsKeyDown( Key.Delete ) )
                     {
-                        if (form.Visible) form.Hide();
+                        if ( form.Visible ) form.Hide();
                         break;
                     }
-                    /*
-                    if (Keyboard.IsKeyDown(Key.A))
-                        Console.WriteLine(g_MdlCache.FindModel("models/weapons/custom_t.mdl"));
-                    if (Keyboard.IsKeyDown(Key.E))
-                        Console.WriteLine(g_MdlCache.FindModel("models/weapons/v_snip_awp.mdl"));
-                    */
                 }
-                catch (Exception ex) { Console.WriteLine(ex); }
-            }
-            #endregion
+                #endregion
 
-            Dispose();
-            Console.WriteLine("Unloaded.");
+                Dispose();
+                Console.WriteLine( "Unloaded." );
+            }
+            catch ( Exception ex )
+            {
+                Console.WriteLine( ex );
+            }
         }
     }
 

@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
 using System.Drawing;
 
-using static SharpSkin_dll.Offset;
 using static SharpSkin_dll.SharpSkin;
 
 namespace SharpSkin_dll

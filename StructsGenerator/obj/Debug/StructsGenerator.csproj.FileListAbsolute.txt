@@ -5,3 +5,10 @@ C:\Users\EasyHax\Desktop\EasySharp-master\StructsGenerator\obj\Debug\StructsGene
 C:\Users\EasyHax\Desktop\EasySharp-master\StructsGenerator\obj\Debug\StructsGenerator.csproj.CoreCompileInputs.cache
 C:\Users\EasyHax\Desktop\EasySharp-master\StructsGenerator\obj\Debug\StructsGenerator.exe
 C:\Users\EasyHax\Desktop\EasySharp-master\StructsGenerator\obj\Debug\StructsGenerator.pdb
+C:\Windows\EasySharp-master\StructsGenerator\bin\Debug\StructsGenerator.exe.config
+C:\Windows\EasySharp-master\StructsGenerator\bin\Debug\StructsGenerator.exe
+C:\Windows\EasySharp-master\StructsGenerator\bin\Debug\StructsGenerator.pdb
+C:\Windows\EasySharp-master\StructsGenerator\obj\Debug\StructsGenerator.csproj.CoreCompileInputs.cache
+C:\Windows\EasySharp-master\StructsGenerator\obj\Debug\StructsGenerator.exe
+C:\Windows\EasySharp-master\StructsGenerator\obj\Debug\StructsGenerator.pdb
+C:\Windows\EasySharp-master\StructsGenerator\obj\Debug\StructsGenerator.csprojAssemblyReference.cache

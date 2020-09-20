@@ -21,3 +21,9 @@ C:\bin\Debug\EasyLoad64.dll
 C:\bin\Debug\EasySharp_Injector.exe.config
 C:\bin\Debug\EasySharp_Injector.exe
 C:\bin\Debug\EasySharp_Injector.pdb
+C:\Windows\EasySharp-master\Debug\EasySharp_Injector.exe.config
+C:\Windows\EasySharp-master\Debug\EasySharp_Injector.exe
+C:\Windows\EasySharp-master\Debug\EasySharp_Injector.pdb
+C:\Windows\EasySharp-master\EasySharp_Injector\obj\Debug\EasySharp_Injector.csproj.CoreCompileInputs.cache
+C:\Windows\EasySharp-master\EasySharp_Injector\obj\Debug\EasySharp_Injector.exe
+C:\Windows\EasySharp-master\EasySharp_Injector\obj\Debug\EasySharp_Injector.pdb

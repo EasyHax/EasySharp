@@ -13,7 +13,7 @@ namespace SharpSkin_dll
         [DllImport("kernel32.dll")]
         public static extern void AllocConsole();
 
-        [DllImport("User32.dll")]
+        [DllImport( "kernel32.dll" )]
         public static extern void FreeConsole();
 
         [DllImport("kernel32.dll")]
