@@ -1,15 +1,21 @@
 # EasySharp
 
-[!] Injector and Chams are outdated
+[!] Chams are outdated
+
 A C# internal base for CSGO with an implemented skinchanger.
  
 ![EasySharp](https://image.noelshack.com/fichiers/2020/19/6/1589053385-7.jpg)
 
 ## Installation
 
-1. Compile in release
-2. Navigate to {ProjectRoot}/Release/
-3. Run the injector
+Temporary fix for the injector : respect those paths
+C:\\Windows\\EasySharp\\Debug\\EasySharp.dll
+C:\\Windows\\EasySharp\\Debug\\Injector.exe
+
+
+1. Compile
+2. Navigate to {ProjectRoot}/ReleaseOrDebug/
+3. Run Injector.exe
 
 ## Use the preset
 
