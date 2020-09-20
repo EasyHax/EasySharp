@@ -8,10 +8,7 @@ A C# internal base for CSGO with an implemented skinchanger.
 
 ## Installation
 
-Temporary fix for the injector : respect those paths
-C:\\Windows\\EasySharp\\Debug\\EasySharp.dll
-C:\\Windows\\EasySharp\\Debug\\Injector.exe
-
+Injector and EasySharp.dll have to be a subfolder of C:\\Windows\\
 
 1. Compile
 2. Navigate to {ProjectRoot}/ReleaseOrDebug/
