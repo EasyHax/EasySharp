@@ -86,7 +86,7 @@ class Injector
 
         if ( !PathLib.Contains( "C:\\Windows\\" ) )
         {
-            Console.WriteLine( "Injector and EasySharp.dll have to be in a subfolder of C:\\Windows\\" );
+            Console.WriteLine( "Injector and EasySharp.dll have to be in subfolder of C:\\Windows\\" );
             Console.ReadLine();
             Environment.Exit( 0 );
         }
