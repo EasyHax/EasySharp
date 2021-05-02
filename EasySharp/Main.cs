@@ -5,8 +5,6 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Input;
 
-using RGiesecke.DllExport;
-
 using static SharpSkin_dll.SharpSkin;
 using static SharpSkin_dll.Hooks;
 using static SharpSkin_dll.Structs;

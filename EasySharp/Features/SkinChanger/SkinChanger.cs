@@ -52,7 +52,7 @@ namespace SharpSkin_dll
                     if ( hWeapon.m_iItemDefinitionIndex == 59 || hWeapon.m_iItemDefinitionIndex == 42 || (hWeapon.m_iItemDefinitionIndex > 400 && hWeapon.m_iItemDefinitionIndex < 600) )
                     {
                         var knife = knifeKit.weapon;
-                        if ( knife == string.Empty )
+                        if ( string.IsNullOrEmpty( knife ) )
                             continue;
 
                         var model_index = GetModelIndex( knife );
