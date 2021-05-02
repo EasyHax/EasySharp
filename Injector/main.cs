@@ -82,6 +82,10 @@ class Injector
     {
         var CurrDir = Directory.GetCurrentDirectory();
         var RandLib = CurrDir + "\\Cache\\" + DateTime.Now.Ticks + ".dll";
+
+        if (!Directory.Exists("Cache"))
+            Directory.Exists("Cache");
+
         var PathLib = Path.GetFullPath( LibName );
 
         if ( !PathLib.Contains( "C:\\Windows\\" ) )
