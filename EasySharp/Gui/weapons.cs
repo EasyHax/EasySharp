@@ -66,11 +66,12 @@ namespace SharpSkin_dll
                 customname = custom_name.Text,
                 weapon = (string)weapons_list.SelectedItem,
                 fallback = Parser.FallBackFromInt(int.Parse(fallback_value.Text)),
-                skin_id = DumpSkins.sharpSkin_AllSkins.Find(x => x.Item2 == (allskins_list.Text == string.Empty ? (string)skins_list.SelectedItem : (string)allskins_list.SelectedItem)).Item1
+                skin_id = DumpSkins.sharpSkin_AllSkins.Find(x => x.Item2 == (allskins_list.Text == string.Empty ? (string)skins_list.SelectedItem : (string)allskins_list.SelectedItem)).Item1,
             };
 
             weaponKit.item_index = (int)Enum.Parse(typeof(ItemDefinitionIndex), weaponKit.weapon);
-            int.TryParse(stattrack_value.Text, out weaponKit.stattrack);
+            int.TryParse(   stattrack_value.Text, out weaponKit.stattrack  );
+            int.TryParse(   seed_value.Text,      out weaponKit.seed       );
 
             var isAlreadySet = weaponKits.FindIndex(x => x.weapon == weaponKit.weapon);
             if(isAlreadySet != -1)

@@ -19,6 +19,7 @@ namespace SharpSkin_dll
         public float    fallback;
         public int      stattrack;
         public string   customname;
+        public int      seed;
     }
 
     unsafe class SkinChanger
@@ -76,6 +77,8 @@ namespace SharpSkin_dll
                         if ( knifeKit.fallback != 0 ) hWeapon.m_flFallbackWear = knifeKit.fallback;
                         else hWeapon.m_flFallbackWear = 0.0001f;
 
+                        if ( knifeKit.seed != 0) hWeapon.m_nFallbackSeed = knifeKit.seed;
+
                         if ( knifeKit.stattrack != 0 )
                         {
                             hWeapon.m_iAccountID = hWeapon.m_OriginalOwnerXuidLow;
@@ -120,13 +123,13 @@ namespace SharpSkin_dll
                         if ( weaponKit.fallback != 0 ) hWeapon.m_flFallbackWear = weaponKit.fallback;
                         else hWeapon.m_flFallbackWear = 0.0001f;
 
+                        if ( weaponKit.seed != 0 ) hWeapon.m_nFallbackSeed = weaponKit.seed;
+
                         if ( weaponKit.stattrack != 0 )
                         {
                             hWeapon.m_iAccountID = hWeapon.m_OriginalOwnerXuidLow;
                             hWeapon.m_nFallbackStatTrak = weaponKit.stattrack;
                         }
-
-                        hWeapon.m_nFallbackSeed = 3148; //#############################################
 
                         if ( weaponKit.customname != string.Empty )
                             Marshal.Copy( Encoding.UTF8.GetBytes( weaponKit.customname ), 0, (IntPtr)(hWeapon + DT_BaseAttributableItem.m_szCustomName), weaponKit.customname.Length );

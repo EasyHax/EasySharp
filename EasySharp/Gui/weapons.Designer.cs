@@ -49,6 +49,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label15 = new System.Windows.Forms.Label();
+            this.seed_value = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.stattrack_value = new System.Windows.Forms.TextBox();
             this.custom_name = new System.Windows.Forms.TextBox();
@@ -302,6 +304,8 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(50)))), ((int)(((byte)(80)))));
+            this.panel3.Controls.Add(this.label15);
+            this.panel3.Controls.Add(this.seed_value);
             this.panel3.Controls.Add(this.label11);
             this.panel3.Controls.Add(this.stattrack_value);
             this.panel3.Controls.Add(this.custom_name);
@@ -316,12 +320,35 @@
             this.panel3.Size = new System.Drawing.Size(217, 116);
             this.panel3.TabIndex = 16;
             // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.Color.White;
+            this.label15.Location = new System.Drawing.Point(175, 62);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(31, 13);
+            this.label15.TabIndex = 25;
+            this.label15.Text = "Seed";
+            // 
+            // seed_value
+            // 
+            this.seed_value.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(20)))), ((int)(((byte)(60)))));
+            this.seed_value.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.seed_value.ForeColor = System.Drawing.Color.White;
+            this.seed_value.Location = new System.Drawing.Point(107, 60);
+            this.seed_value.Multiline = true;
+            this.seed_value.Name = "seed_value";
+            this.seed_value.Size = new System.Drawing.Size(60, 18);
+            this.seed_value.TabIndex = 21;
+            this.seed_value.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(174, 65);
+            this.label11.Location = new System.Drawing.Point(69, 68);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(37, 13);
             this.label11.TabIndex = 18;
@@ -335,7 +362,7 @@
             this.stattrack_value.Location = new System.Drawing.Point(6, 60);
             this.stattrack_value.Multiline = true;
             this.stattrack_value.Name = "stattrack_value";
-            this.stattrack_value.Size = new System.Drawing.Size(161, 18);
+            this.stattrack_value.Size = new System.Drawing.Size(60, 18);
             this.stattrack_value.TabIndex = 19;
             this.stattrack_value.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -356,7 +383,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(173, 89);
+            this.label10.Location = new System.Drawing.Point(176, 91);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(31, 13);
             this.label10.TabIndex = 16;
@@ -402,7 +429,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(168, 32);
+            this.label4.Location = new System.Drawing.Point(167, 32);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(49, 13);
             this.label4.TabIndex = 12;
@@ -413,7 +440,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(173, 55);
+            this.label7.Location = new System.Drawing.Point(69, 57);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(31, 13);
             this.label7.TabIndex = 17;
@@ -516,5 +543,7 @@
         public System.Windows.Forms.ComboBox allskins_list;
         public System.Windows.Forms.CheckBox randomSkins;
         public System.Windows.Forms.Label label13;
+        public System.Windows.Forms.TextBox seed_value;
+        public System.Windows.Forms.Label label15;
     }
 }

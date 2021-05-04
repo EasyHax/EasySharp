@@ -76,18 +76,18 @@ namespace SharpSkin_dll
         public static float FallBackFromInt(int i)
         {
             if (i == 10) return 0.0001f;
-            if (i == 9) return 0.1384f;
-            if (i == 8) return 0.2235f;
-            if (i == 7) return 0.3245f;
-            if (i == 6) return 0.4202f;
-            if (i == 5) return 0.5079f;
-            if (i == 4) return 0.6036f;
-            if (i == 3) return 0.7074f;
-            if (i == 2) return 0.8031f;
-            if (i == 1) return 0.9333f;
-            if (i == 0) return 0.9999f;
+            else if (i == 9) return 0.1384f;
+            else if (i == 8) return 0.2235f;
+            else if (i == 7) return 0.3245f;
+            else if (i == 6) return 0.4202f;
+            else if (i == 5) return 0.5079f;
+            else if (i == 4) return 0.6036f;
+            else if (i == 3) return 0.7074f;
+            else if (i == 2) return 0.8031f;
+            else if (i == 1) return 0.9333f;
+            else if (i == 0) return 0.9999f;
 
-            return 0f;
+            else return 0f;
         }
 
         public static void AddNewKit(this ListBox.ObjectCollection objectCollection, WeaponKit weaponKit)

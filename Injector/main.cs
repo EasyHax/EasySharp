@@ -83,8 +83,8 @@ class Injector
         var CurrDir = Directory.GetCurrentDirectory();
         var RandLib = CurrDir + "\\Cache\\" + DateTime.Now.Ticks + ".dll";
 
-        if (!Directory.Exists("Cache"))
-            Directory.Exists("Cache");
+        if ( !Directory.Exists("Cache") )
+            Directory.CreateDirectory("Cache");
 
         var PathLib = Path.GetFullPath( LibName );
 
@@ -98,7 +98,7 @@ class Injector
         File.Copy( PathLib, RandLib );
 
         var process = Process.GetProcessesByName(ProcessName).FirstOrDefault();
-        var byLibName = Encoding.UTF8.GetBytes( PathLib );
+        var byLibName = Encoding.UTF8.GetBytes( RandLib );
 
         var hMemory = VirtualAllocEx( process.Handle, IntPtr.Zero, byLibName.Length, AllocationType.Commit, MemoryProtection.ReadWrite );
 

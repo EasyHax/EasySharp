@@ -44,11 +44,13 @@
             this.fallback = new System.Windows.Forms.TrackBar();
             this.label4 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label13 = new System.Windows.Forms.Label();
+            this.seed_value = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.stattrack_value = new System.Windows.Forms.TextBox();
             this.custom_name = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.stattrack = new System.Windows.Forms.TrackBar();
             this.fallback_value = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label5 = new System.Windows.Forms.Label();
@@ -64,7 +66,6 @@
             this.flowLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fallback)).BeginInit();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.stattrack)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.SuspendLayout();
@@ -240,7 +241,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(168, 32);
+            this.label4.Location = new System.Drawing.Point(167, 32);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(49, 13);
             this.label4.TabIndex = 12;
@@ -249,11 +250,13 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(50)))), ((int)(((byte)(80)))));
+            this.panel3.Controls.Add(this.label13);
+            this.panel3.Controls.Add(this.seed_value);
+            this.panel3.Controls.Add(this.textBox1);
             this.panel3.Controls.Add(this.label11);
             this.panel3.Controls.Add(this.stattrack_value);
             this.panel3.Controls.Add(this.custom_name);
             this.panel3.Controls.Add(this.label10);
-            this.panel3.Controls.Add(this.stattrack);
             this.panel3.Controls.Add(this.fallback_value);
             this.panel3.Controls.Add(this.flowLayoutPanel1);
             this.panel3.Controls.Add(this.label4);
@@ -261,8 +264,42 @@
             this.panel3.Controls.Add(this.fallback);
             this.panel3.Location = new System.Drawing.Point(366, 191);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(217, 116);
+            this.panel3.Size = new System.Drawing.Size(217, 147);
             this.panel3.TabIndex = 12;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.White;
+            this.label13.Location = new System.Drawing.Point(174, 119);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(31, 13);
+            this.label13.TabIndex = 24;
+            this.label13.Text = "Seed";
+            // 
+            // seed_value
+            // 
+            this.seed_value.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(20)))), ((int)(((byte)(60)))));
+            this.seed_value.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.seed_value.ForeColor = System.Drawing.Color.White;
+            this.seed_value.Location = new System.Drawing.Point(6, 116);
+            this.seed_value.Multiline = true;
+            this.seed_value.Name = "seed_value";
+            this.seed_value.Size = new System.Drawing.Size(161, 18);
+            this.seed_value.TabIndex = 22;
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(20)))), ((int)(((byte)(60)))));
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.ForeColor = System.Drawing.Color.White;
+            this.textBox1.Location = new System.Drawing.Point(6, 60);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(161, 18);
+            this.textBox1.TabIndex = 21;
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label11
             // 
@@ -308,16 +345,6 @@
             this.label10.Size = new System.Drawing.Size(31, 13);
             this.label10.TabIndex = 16;
             this.label10.Text = "Name";
-            // 
-            // stattrack
-            // 
-            this.stattrack.Location = new System.Drawing.Point(6, 55);
-            this.stattrack.Maximum = 10000;
-            this.stattrack.Name = "stattrack";
-            this.stattrack.Size = new System.Drawing.Size(135, 45);
-            this.stattrack.TabIndex = 21;
-            this.stattrack.TickFrequency = 1000;
-            this.stattrack.Scroll += new System.EventHandler(this.stattrack_Scroll);
             // 
             // fallback_value
             // 
@@ -448,7 +475,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.fallback)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.stattrack)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.panel4.ResumeLayout(false);
@@ -484,9 +510,11 @@
         public System.Windows.Forms.TextBox stattrack_value;
         public System.Windows.Forms.TextBox custom_name;
         public System.Windows.Forms.Label label10;
-        public System.Windows.Forms.TrackBar stattrack;
         public System.Windows.Forms.TextBox fallback_value;
         public System.Windows.Forms.Label label7;
         public System.Windows.Forms.Button button2;
+        public System.Windows.Forms.TextBox textBox1;
+        public System.Windows.Forms.Label label13;
+        public System.Windows.Forms.TextBox seed_value;
     }
 }

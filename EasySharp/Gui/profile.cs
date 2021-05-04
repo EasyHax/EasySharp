@@ -94,20 +94,19 @@ namespace SharpSkin_dll
                     var kit = getKit(line);
                     SkinChanger.knifeKit = kit;
                     form.knife1.list_sets.Items.AddNewKit(kit);
-                    continue;
                 }
-
-                if (line.Substring(0, 5) == "[kit]")
+                else if (line.Substring(0, 5) == "[kit]")
                 {
                     var kit = getKit(line);
                     SkinChanger.weaponKits.Add(kit);
                     form.weapons1.list_sets.Items.AddNewKit(kit);
-                    continue;
                 }
-
-                var key = line.Remove(line.IndexOf("#"));
-                var obj = line.Substring(line.IndexOf("#") + 1);
-                cfg.Add(key, obj);
+                else
+                {
+                    var key = line.Remove(line.IndexOf("#"));
+                    var obj = line.Substring(line.IndexOf("#") + 1);
+                    cfg.Add(key, obj);
+                }
             }
 
             // AIMBOT                                     =============================
@@ -190,11 +189,13 @@ namespace SharpSkin_dll
             add("chams_g_alpha", form.chams1.alpha_gloves.Value);
 
             if (form.knife1.list_sets.Items.Count != 0)
-                addKnife(SkinChanger.knifeKit);
+                addKit(SkinChanger.knifeKit, true);
             foreach (var weaponKit in SkinChanger.weaponKits)
-                addKit(weaponKit);
+                addKit(weaponKit, false);
 
             File.WriteAllLines(config_path + filename + ".cfg", new_lines);
+
+            Refresh();
         }
 
         public static string[] Refresh()
@@ -210,9 +211,12 @@ namespace SharpSkin_dll
         public static T get_var<T>(string var_name) => (T)Convert.ChangeType(cfg[var_name], typeof(T));
         public static void add(string key, object value) => new_lines.Add(string.Format($"{key}#{value.ToString()}"));
 
-        public static void addKit(WeaponKit weaponKit) =>   new_lines.Add($"[kit]{weaponKit.skin_id}#{weaponKit.item_index}#{weaponKit.weapon}#{weaponKit.fallback.ToString(CultureInfo.InvariantCulture)}#{weaponKit.stattrack}#{weaponKit.customname}#");
-        public static void addKnife(WeaponKit weaponKit) => new_lines.Add($"[kni]{weaponKit.skin_id}#{weaponKit.item_index}#{weaponKit.weapon}#{weaponKit.fallback.ToString(CultureInfo.InvariantCulture)}#{weaponKit.stattrack}#{weaponKit.customname}#");
-
+        public static void addKit( WeaponKit weaponKit, bool isKnife ) => 
+            new_lines.Add($"{(isKnife ? "[kni]" : "[kit]")}" +
+            $"{weaponKit.skin_id}#{weaponKit.item_index}#{weaponKit.weapon}" +
+            $"#{weaponKit.fallback.ToString(CultureInfo.InvariantCulture)}" +
+            $"#{weaponKit.stattrack}#{weaponKit.customname}#{weaponKit.seed}#");
+        
         public static WeaponKit getKit(string rawKit)
         {
             var infos = rawKit.Remove(0, 5).Split('#');
@@ -223,7 +227,8 @@ namespace SharpSkin_dll
                 weapon     = infos[2],
                 fallback   = float.Parse(infos[3], CultureInfo.InvariantCulture),
                 stattrack  = int.Parse(infos[4]),
-                customname = infos[5]
+                customname = infos[5],
+                seed       = int.Parse(infos[6])
             };
         }
     }

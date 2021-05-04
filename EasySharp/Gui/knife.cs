@@ -57,11 +57,6 @@ namespace SharpSkin_dll
             fallback_value.Text = (10 - fallback.Value).ToString();
         }
 
-        private void stattrack_Scroll(object sender, EventArgs e)
-        {
-            stattrack_value.Text = stattrack.Value.ToString();
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             if (skins_list.SelectedIndex == -1 || knifes_list.SelectedIndex == -1)
@@ -79,6 +74,7 @@ namespace SharpSkin_dll
             weaponKit.skin_id = KnifeNameToSkin((string)skins_list.SelectedItem, weaponKit.weapon);
             weaponKit.item_index = (int)Enum.Parse(typeof(ItemDefinitionIndex), weaponKit.weapon);
             int.TryParse(stattrack_value.Text, out weaponKit.stattrack);
+            int.TryParse(seed_value.Text, out weaponKit.seed);
 
             knifeKit = weaponKit;
             if (list_sets.Items.Count > 0) list_sets.Items.RemoveAt(0);
