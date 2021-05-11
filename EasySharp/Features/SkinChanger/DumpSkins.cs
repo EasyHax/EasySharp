@@ -6,6 +6,8 @@ using System.Windows.Forms;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 
+using static SharpSkin_dll.SharpSkin;
+
 namespace SharpSkin_dll
 {
     unsafe class DumpSkins
@@ -39,10 +41,8 @@ namespace SharpSkin_dll
             var map_head       = item_schema + head_offset;
             var last_element   = *(int*)(map_head + 0x0018);
             var ptr            = (Head_t*)(map_head);
-            var find_Item_addr = Memory.VirtualAddress(SharpSkin.g_Localize.addr, 12);
 
-            var find_Item    = Marshal.GetDelegateForFunctionPointer<find_item>(find_Item_addr);
-            var V_UCS2ToUTF8 = WinApi.getApi<d_V_UCS2ToUTF8>("V_UCS2ToUTF8", "vstdlib.dll", out IntPtr addr);
+            var V_UCS2ToUTF8 = WinApi.getApi<d_V_UCS2ToUTF8>("V_UCS2ToUTF8", "vstdlib.dll", out _);
             var output       = Marshal.AllocHGlobal(256);
 
             for ( int i = 0; i < last_element; i++ )
@@ -53,8 +53,8 @@ namespace SharpSkin_dll
                     continue;
 
                 var itemName  = Encoding.UTF8.GetString((byte*)(paint_kit->item_name.buffer), paint_kit->item_name.length - 1).Remove(0, 1);
-                var raw_item  = find_Item(SharpSkin.g_Localize.addr, itemName);
-                var length    = V_UCS2ToUTF8(raw_item, output, 512);
+                var raw_item  = g_Localize.FindItem(itemName);
+                var length    = V_UCS2ToUTF8(raw_item, output, 256);
                 var skin_name = Encoding.UTF8.GetString((byte*)output, length - 1);
                 sharpSkin_AllSkins.Add( (paint_kit->id, skin_name) );
 
@@ -62,10 +62,12 @@ namespace SharpSkin_dll
                 if ( skin_info.Item1 == "ERROR" )
                     continue;
 
+
                 sharpSkin_Skins.Add( new SharpSkin_Weapon( paint_kit->id, skin_info.Item2, skin_info.Item1, skin_name ) );
             }
 
-            sharpSkin_Skins.Add( new SharpSkin_Weapon( 487, "SG553", "Cyrex", "Cyrex" ) );
+            sharpSkin_AllSkins = sharpSkin_AllSkins.OrderBy(x => x.Item2).ToList();
+
             sharpSkin_SkinId = sharpSkin_AllSkins.Select( x => x.Item1 ).ToArray();
         }
 

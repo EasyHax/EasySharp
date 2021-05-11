@@ -48,13 +48,26 @@ namespace SharpSkin_dll
             InitializeComponent();
 
             fallback_value.Text = "10";
-            stattrack_value.Text = "0";
+
+            seed_value.KeyPress += Seed_value_KeyPress;
+            stattrack_value.KeyPress += Stattrack_value_KeyPress;
 
             skins_list.Items.AddRange(skins.Keys.ToArray());
         }
+
         private void fallback_Scroll(object sender, EventArgs e)
         {
             fallback_value.Text = (10 - fallback.Value).ToString();
+        }
+
+        private void Stattrack_value_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void Seed_value_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -73,8 +86,8 @@ namespace SharpSkin_dll
 
             weaponKit.skin_id = KnifeNameToSkin((string)skins_list.SelectedItem, weaponKit.weapon);
             weaponKit.item_index = (int)Enum.Parse(typeof(ItemDefinitionIndex), weaponKit.weapon);
-            int.TryParse(stattrack_value.Text, out weaponKit.stattrack);
-            int.TryParse(seed_value.Text, out weaponKit.seed);
+            int.TryParse(   stattrack_value.Text, out weaponKit.stattrack  );
+            int.TryParse(   seed_value.Text,      out weaponKit.seed       );
 
             knifeKit = weaponKit;
             if (list_sets.Items.Count > 0) list_sets.Items.RemoveAt(0);

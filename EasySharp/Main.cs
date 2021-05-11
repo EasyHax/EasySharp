@@ -94,9 +94,9 @@ namespace SharpSkin_dll
         {
             Display.WriteLine("[!] Loading Interfaces..", ConsoleColor.DarkYellow);
 
-            g_Client        = new Client       (Interface.CreateInterface("VClient018"          , "client.dll"));
+            g_Client        = new Client       (Interface.CreateInterface("VClient018"          , "client.dll"         ));
             g_Engine        = new Engine       (Interface.CreateInterface("VEngineClient014"    , "engine.dll"         ));
-            g_Entity        = new Entity       (Interface.CreateInterface("VClientEntityList003", "client.dll"));
+            g_Entity        = new Entity       (Interface.CreateInterface("VClientEntityList003", "client.dll"         ));
             g_MdlInfo       = new ModelInfo    (Interface.CreateInterface("VModelInfoClient004" , "engine.dll"         ));
             g_EngineTrace   = new EngineTrace  (Interface.CreateInterface("EngineTraceClient004", "engine.dll"         ));
             g_DbgOverlay    = new DebugOverlay (Interface.CreateInterface("VDebugOverlay004"    , "engine.dll"         ));
@@ -108,7 +108,7 @@ namespace SharpSkin_dll
             g_MatSys        = new MaterialSystem(Interface.CreateInterface("VMaterialSystem080" , "materialsystem.dll" ));
             g_NtvMngr       = new NetvarMngr();
 
-            g_NtvMngr.DumpClasses();
+            //g_NtvMngr.DumpClasses();
 
             Display.WriteLine("[+] Interfaces Loaded!\n", ConsoleColor.DarkYellow);
 
@@ -129,6 +129,7 @@ namespace SharpSkin_dll
             DumpSkins.Dump();
             form = new Form1();
             GuiTheme.DarkTheme();
+            Config.Refresh();
             //ProxyHook.Hook();
 
             Display.WriteLine("\n[!] Hooking game functions..", ConsoleColor.DarkYellow);

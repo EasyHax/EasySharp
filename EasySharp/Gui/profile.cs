@@ -22,7 +22,6 @@ namespace SharpSkin_dll
                 Directory.CreateDirectory(config_path);
 
             InitializeComponent();
-            button5.PerformClick();
         }
 
         public static string config_path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\SharpSkin\\";
@@ -42,9 +41,7 @@ namespace SharpSkin_dll
 
         private void button5_Click(object sender, EventArgs e)
         {
-            var configs = Config.Refresh();
-            list_configs.Items.Clear();
-            list_configs.Items.AddRange(configs);
+            Config.Refresh();
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -122,33 +119,33 @@ namespace SharpSkin_dll
             //form.hax1._trigger_delay                      = get_var<int>("trigger_delay");
 
             // CHAMS                                      ==============================
-            form.chams1.chams_enabled.Checked             = get_var<bool>("chams_enabled");
+            form.chams1.chams_enabled.Checked = get_var<bool>("chams_enabled");
 
-            form.chams1.weapon_mcolor_enabled.Checked     = get_var<bool>("chams_w_mcolor_enabled");
-            form.chams1.sleeves_mcolor_enabled.Checked    = get_var<bool>("chams_s_mcolor_enabled");
-            form.chams1.gloves_mcolor_enabled.Checked     = get_var<bool>("chams_g_mcolor_enabled");
+            form.chams1.weapon_mcolor_enabled.Checked = get_var<bool>("chams_w_mcolor_enabled");
+            form.chams1.sleeves_mcolor_enabled.Checked = get_var<bool>("chams_s_mcolor_enabled");
+            form.chams1.gloves_mcolor_enabled.Checked = get_var<bool>("chams_g_mcolor_enabled");
 
-            form.chams1.weapon_wireframe_enabled.Checked  = get_var<bool>("chams_w_wirefram_enabled");
+            form.chams1.weapon_wireframe_enabled.Checked = get_var<bool>("chams_w_wirefram_enabled");
             form.chams1.sleeves_wireframe_enabled.Checked = get_var<bool>("chams_s_wirefram_enabled");
-            form.chams1.gloves_wireframe_enabled.Checked  = get_var<bool>("chams_g_wirefram_enabled");
+            form.chams1.gloves_wireframe_enabled.Checked = get_var<bool>("chams_g_wirefram_enabled");
 
-            form.chams1.colorDialog1_weapon.Color         = Color.FromArgb(get_var<int>("chams_w_mcolor"));
-            form.chams1.mcolor_weapon.BackColor           = Color.FromArgb(get_var<int>("chams_w_mcolor"));
-            form.chams1.colorDialog3_sleeves.Color        = Color.FromArgb(get_var<int>("chams_s_mcolor"));
-            form.chams1.mcolor_sleeves.BackColor          = Color.FromArgb(get_var<int>("chams_s_mcolor"));
-            form.chams1.colorDialog2_gloves.Color         = Color.FromArgb(get_var<int>("chams_g_mcolor"));
-            form.chams1.mcolor_gloves.BackColor           = Color.FromArgb(get_var<int>("chams_g_mcolor"));
+            form.chams1.colorDialog1_weapon.Color = Color.FromArgb(get_var<int>("chams_w_mcolor"));
+            form.chams1.mcolor_weapon.BackColor = Color.FromArgb(get_var<int>("chams_w_mcolor"));
+            form.chams1.colorDialog3_sleeves.Color = Color.FromArgb(get_var<int>("chams_s_mcolor"));
+            form.chams1.mcolor_sleeves.BackColor = Color.FromArgb(get_var<int>("chams_s_mcolor"));
+            form.chams1.colorDialog2_gloves.Color = Color.FromArgb(get_var<int>("chams_g_mcolor"));
+            form.chams1.mcolor_gloves.BackColor = Color.FromArgb(get_var<int>("chams_g_mcolor"));
 
-            form.chams1.matlist_weapon.SelectedItem       = get_var<string>("chams_w_material");
-            form.chams1.matlist_sleeves.SelectedItem      = get_var<string>("chams_s_material");
-            form.chams1.matlist_gloves.SelectedItem       = get_var<string>("chams_g_material");
+            form.chams1.matlist_weapon.SelectedItem = get_var<string>("chams_w_material");
+            form.chams1.matlist_sleeves.SelectedItem = get_var<string>("chams_s_material");
+            form.chams1.matlist_gloves.SelectedItem = get_var<string>("chams_g_material");
 
-            form.chams1.alpha_weapon.Value                = get_var<int>("chams_w_alpha");
-            form.chams1.alpha_weapon_value.Text           = Math.Round(form.chams1.alpha_weapon.Value / 255f, 4).ToString();
-            form.chams1.alpha_sleeves.Value               = get_var<int>("chams_s_alpha");
-            form.chams1.alpha_sleeves_value.Text          = Math.Round(form.chams1.alpha_gloves.Value / 255f, 4).ToString();
-            form.chams1.alpha_gloves.Value                = get_var<int>("chams_g_alpha");
-            form.chams1.alpha_gloves_value.Text           = Math.Round(form.chams1.alpha_sleeves.Value / 255f, 4).ToString();
+            form.chams1.alpha_weapon.Value = get_var<int>("chams_w_alpha");
+            form.chams1.alpha_weapon_value.Text = Math.Round(form.chams1.alpha_weapon.Value / 255f, 4).ToString();
+            form.chams1.alpha_sleeves.Value = get_var<int>("chams_s_alpha");
+            form.chams1.alpha_sleeves_value.Text = Math.Round(form.chams1.alpha_gloves.Value / 255f, 4).ToString();
+            form.chams1.alpha_gloves.Value = get_var<int>("chams_g_alpha");
+            form.chams1.alpha_gloves_value.Text = Math.Round(form.chams1.alpha_sleeves.Value / 255f, 4).ToString();
         }
 
         public static void Save(string filename)
@@ -198,18 +195,20 @@ namespace SharpSkin_dll
             Refresh();
         }
 
-        public static string[] Refresh()
+        public static void Refresh()
         {
             var files = Directory.GetFiles(config_path, "*.cfg");
             var names = new string[files.Length];
             for (var i = 0; i < files.Length; i++)
                 names[i] = Path.GetFileNameWithoutExtension(files[i]);
-            return names;
+
+            form.profile1.list_configs.Items.Clear();
+            form.profile1.list_configs.Items.AddRange(names);
         }
 
         public static VirtualKeys get_key(string var_name) { Enum.TryParse<VirtualKeys>(var_name, out var key); return key; }
         public static T get_var<T>(string var_name) => (T)Convert.ChangeType(cfg[var_name], typeof(T));
-        public static void add(string key, object value) => new_lines.Add(string.Format($"{key}#{value.ToString()}"));
+        public static void add(string key, object value) => new_lines.Add(string.Format($"{key}#{value}"));
 
         public static void addKit( WeaponKit weaponKit, bool isKnife ) => 
             new_lines.Add($"{(isKnife ? "[kni]" : "[kit]")}" +

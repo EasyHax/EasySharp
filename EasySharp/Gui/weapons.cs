@@ -14,19 +14,25 @@ namespace SharpSkin_dll
 {
     public partial class weapons : UserControl
     {
-        static Dictionary<string, List<string>> skins_sorted = new Dictionary<string, List<string>>();
+        static Dictionary<string, List<(int, string)>> skins_sorted = new Dictionary<string, List<(int, string)>>();
+        static List<(int, string)> cur_weapon_skins = new List<(int, string)>();
+
+        static bool is_from_allskins_list = false;
+        
 
         public weapons()
         {
             InitializeComponent();
 
             stattrack_value.KeyPress += Stattrack_value_KeyPress;
+            seed_value.KeyPress += Seed_value_KeyPress;
+            allskins_list.MouseDown += AllSkins_List_MouseDown;
+            skins_list.MouseDown += Skins_List_MouseDown;
 
             foreach (var skin in DumpSkins.sharpSkin_AllSkins)
                 allskins_list.Items.Add(skin.Item2);
 
             fallback_value.Text = "10";
-            stattrack_value.Text = "0";
 
             var weapons_type = new List<object>();
 
@@ -36,20 +42,39 @@ namespace SharpSkin_dll
 
                 if (!skins_sorted.ContainsKey(weapon_type))
                 {
-                    var weapon_skins = new List<string>();
+                    var weapon_skins = new List<(int, string)>();
 
                     foreach (var skin in DumpSkins.sharpSkin_Skins)
                         if (skin.weapon == weapon_type)
-                            weapon_skins.Add(skin.translated_name);
+                        {
+                            weapon_skins.Add((skin.id, skin.translated_name));
+                        }
 
+                    weapon_skins = weapon_skins.OrderBy(x => x.Item2).ToList();
                     skins_sorted.Add(weapon_type, weapon_skins);
                 }
             }
 
+            skins_sorted = skins_sorted.OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value);
             weapons_list.Items.AddRange(skins_sorted.Keys.ToArray());
         }
 
+        private void Skins_List_MouseDown(object sender, MouseEventArgs e)
+        {
+            is_from_allskins_list = false;
+        }
+
+        private void AllSkins_List_MouseDown(object sender, MouseEventArgs e)
+        {
+            is_from_allskins_list = true;
+        }
+
         private void Stattrack_value_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void Seed_value_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
@@ -66,8 +91,14 @@ namespace SharpSkin_dll
                 customname = custom_name.Text,
                 weapon = (string)weapons_list.SelectedItem,
                 fallback = Parser.FallBackFromInt(int.Parse(fallback_value.Text)),
-                skin_id = DumpSkins.sharpSkin_AllSkins.Find(x => x.Item2 == (allskins_list.Text == string.Empty ? (string)skins_list.SelectedItem : (string)allskins_list.SelectedItem)).Item1,
+                skin_id = DumpSkins.sharpSkin_AllSkins.Find(x => x.Item2 == (is_from_allskins_list ? (string)allskins_list.SelectedItem : (string)skins_list.SelectedItem)).Item1
             };
+
+            var i = is_from_allskins_list 
+                ? DumpSkins.sharpSkin_AllSkins[allskins_list.SelectedIndex].Item1 
+                : cur_weapon_skins[skins_list.SelectedIndex].Item1;
+
+            weaponKit.skin_id = i;
 
             weaponKit.item_index = (int)Enum.Parse(typeof(ItemDefinitionIndex), weaponKit.weapon);
             int.TryParse(   stattrack_value.Text, out weaponKit.stattrack  );
@@ -95,19 +126,11 @@ namespace SharpSkin_dll
 
         private void knifes_list_SelectedIndexChanged(object sender, EventArgs e)
         {
+            cur_weapon_skins = skins_sorted[(string)weapons_list.SelectedItem];
+
             skins_list.Items.Clear();
             skins_list.Text = "";
-            skins_list.Items.AddRange(skins_sorted[(string)weapons_list.SelectedItem].ToArray());
-        }
-
-        public static void ReadyConfig()
-        {
-            var weapons = skins_sorted.Keys.ToArray();
-            foreach(var weapon in weapons)
-            {
-                var id = (ItemDefinitionIndex)Enum.Parse(typeof(ItemDefinitionIndex), weapon);
-                Console.WriteLine($"[kit]0#{(int)id}#{weapon}#0.0001#9999#Name#");
-            }
+            skins_list.Items.AddRange(cur_weapon_skins.Select(x => x.Item2).ToArray());
         }
 
         private void fallback_Scroll(object sender, EventArgs e)

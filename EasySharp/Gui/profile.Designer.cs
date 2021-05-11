@@ -427,7 +427,7 @@
         public System.Windows.Forms.Label label6;
         public System.Windows.Forms.Button button1;
         public System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.ListBox list_configs;
+        public System.Windows.Forms.ListBox list_configs;
         public System.Windows.Forms.Button button2;
         public System.Windows.Forms.Panel panel3;
         public System.Windows.Forms.Label label2;
