@@ -89,24 +89,27 @@ namespace SharpSkin_dll
         public static ModelRender    g_MdlRender;
         public static NetvarMngr     g_NtvMngr;
         public static BasePlayer     g_LocalPlayer { get => g_Entity.GetClientEntity(g_Engine.GetLocalPlayer()); }
+        public static IntPtr         g_ClientState;
 
         public static void Init()
         {
             Display.WriteLine("[!] Loading Interfaces..", ConsoleColor.DarkYellow);
 
-            g_Client        = new Client       (Interface.CreateInterface("VClient018"          , "client.dll"         ));
-            g_Engine        = new Engine       (Interface.CreateInterface("VEngineClient014"    , "engine.dll"         ));
-            g_Entity        = new Entity       (Interface.CreateInterface("VClientEntityList003", "client.dll"         ));
-            g_MdlInfo       = new ModelInfo    (Interface.CreateInterface("VModelInfoClient004" , "engine.dll"         ));
-            g_EngineTrace   = new EngineTrace  (Interface.CreateInterface("EngineTraceClient004", "engine.dll"         ));
-            g_DbgOverlay    = new DebugOverlay (Interface.CreateInterface("VDebugOverlay004"    , "engine.dll"         ));
-            g_Surface       = new Surface      (Interface.CreateInterface("VGUI_Surface031"     , "vguimatsurface.dll" ));
-            g_Localize      = new Localize     (Interface.CreateInterface("Localize_001"        , "localize.dll"       ));
-            g_Panel         = new Panel        (Interface.CreateInterface("VGUI_Panel009"       , "vgui2.dll"          ));
-            g_MdlRender     = new ModelRender  (Interface.CreateInterface("VEngineModel016"     , "engine.dll"         ));
-            g_MdlCache      = new ModelCache   (Interface.CreateInterface("MDLCache004"         , "datacache.dll"      ));
-            g_MatSys        = new MaterialSystem(Interface.CreateInterface("VMaterialSystem080" , "materialsystem.dll" ));
+            g_Client        = new Client        (Interface.CreateInterface("VClient018"          , "client.dll"         ));
+            g_Engine        = new Engine        (Interface.CreateInterface("VEngineClient014"    , "engine.dll"         ));
+            g_Entity        = new Entity        (Interface.CreateInterface("VClientEntityList003", "client.dll"         ));
+            g_MdlInfo       = new ModelInfo     (Interface.CreateInterface("VModelInfoClient004" , "engine.dll"         ));
+            g_EngineTrace   = new EngineTrace   (Interface.CreateInterface("EngineTraceClient004", "engine.dll"         ));
+            g_DbgOverlay    = new DebugOverlay  (Interface.CreateInterface("VDebugOverlay004"    , "engine.dll"         ));
+            g_Surface       = new Surface       (Interface.CreateInterface("VGUI_Surface031"     , "vguimatsurface.dll" ));
+            g_Localize      = new Localize      (Interface.CreateInterface("Localize_001"        , "localize.dll"       ));
+            g_Panel         = new Panel         (Interface.CreateInterface("VGUI_Panel009"       , "vgui2.dll"          ));
+            g_MdlRender     = new ModelRender   (Interface.CreateInterface("VEngineModel016"     , "engine.dll"         ));
+            g_MdlCache      = new ModelCache    (Interface.CreateInterface("MDLCache004"         , "datacache.dll"      ));
+            g_MatSys        = new MaterialSystem(Interface.CreateInterface("VMaterialSystem080" , "materialsystem.dll"  ));     
             g_NtvMngr       = new NetvarMngr();
+            g_ClientState = ***(IntPtr***)(g_Engine.addr.VirtualAddress(12) + 0x10);
+
 
             //g_NtvMngr.DumpClasses();
 
@@ -124,16 +127,18 @@ namespace SharpSkin_dll
             DisplayInterface("g_Panel:       ", g_Panel.addr      .ToString("X8"));
             DisplayInterface("g_MdlRender:   ", g_MdlRender.addr  .ToString("X8"));
             DisplayInterface("g_MatSys:      ", g_MatSys.addr     .ToString("X8"));
+            DisplayInterface("g_ClientState: ", g_Client.addr     .ToString("X8"));
             DisplayInterface("g_NtvMngr:     ", g_NtvMngr.count   .ToString("X8"));
 
             DumpSkins.Dump();
             form = new Form1();
+            //GuiTheme.DarkTheme();
             GuiTheme.DarkTheme();
             Config.Refresh();
+
             //ProxyHook.Hook();
 
             Display.WriteLine("\n[!] Hooking game functions..", ConsoleColor.DarkYellow);
-
             // Uncomment what you need
 
             hk_FrameStageNotify  = new EzyHook<FrameStageNotify>(37, g_Client.addr,    hkFrameStageNotify_callback, out o_FrameStageNotify);
@@ -258,12 +263,22 @@ namespace SharpSkin_dll
             ApplyTheme(c1, c2, c3, c4, c5);
         }
 
+        public static void CyanTheme()
+        {
+            var c1 = Color.FromArgb(59, 117, 109);
+            var c2 = Color.FromArgb(94, 125, 110);
+            var c3 = Color.FromArgb(16, 97, 83);
+            var c4 = Color.FromArgb(60, 71, 69);
+            var c5 = Color.FromArgb(28, 46, 43);
+            ApplyTheme(c1, c2, c3, c4, c5);
+        }
+
         public static void DarkTheme()
         {
-            var c1 = Color.FromArgb(10, 10, 10);
-            var c2 = Color.FromArgb(30, 30, 30);
+            var c1 = Color.FromArgb(15, 15, 15);
+            var c2 = Color.FromArgb(35, 35, 35);
             var c3 = Color.FromArgb(20, 20, 20);
-            var c4 = Color.FromArgb(30, 30, 30);
+            var c4 = Color.FromArgb(5, 5, 5);
             var c5 = Color.FromArgb(0, 0, 0);
             ApplyTheme(c1, c2, c3, c4, c5);
         }

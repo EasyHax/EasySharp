@@ -78,6 +78,18 @@ class Injector
         WriteCombineModifierflag = 0x400
     }
 
+    public static void CleanCache()
+    {
+        foreach (var file in Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Cache\\").Where(x => x.EndsWith(".dll")))
+        {
+            try
+            {
+                File.Delete(file);
+            }
+            catch { }
+        }
+    }
+
     public static bool Inject( string ProcessName, string LibName, string EntryPoint )
     {
         var CurrDir = Directory.GetCurrentDirectory();
@@ -140,5 +152,7 @@ class Injector
         if ( !Inject( "csgo", "EasySharp.dll", "Entry" ) )
             Console.WriteLine( "[!] Injection Failed!" );
         Console.WriteLine( "[+] Injection Succeeded!" );
+
+        CleanCache();
     }
 }

@@ -32,16 +32,11 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.list_configs = new System.Windows.Forms.ListBox();
             this.button2 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.current_profile = new System.Windows.Forms.TextBox();
+            this.button9 = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -53,18 +48,22 @@
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel8 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
+            this.list_configs = new System.Windows.Forms.ListBox();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.logs = new System.Windows.Forms.RichTextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel2.SuspendLayout();
-            this.flowLayoutPanel2.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel5.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -101,94 +100,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "PROFILE";
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.button1);
-            this.panel2.Controls.Add(this.flowLayoutPanel2);
-            this.panel2.Location = new System.Drawing.Point(289, 3);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(284, 89);
-            this.panel2.TabIndex = 9;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(86)))), ((int)(((byte)(54)))));
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(6, 56);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(201, 23);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "Load";
-            this.button1.UseVisualStyleBackColor = false;
-            // 
-            // flowLayoutPanel2
-            // 
-            this.flowLayoutPanel2.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.flowLayoutPanel2.Controls.Add(this.label6);
-            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(284, 20);
-            this.flowLayoutPanel2.TabIndex = 11;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(3, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(35, 15);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "Load";
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(20)))), ((int)(((byte)(60)))));
-            this.panel4.Controls.Add(this.panel5);
-            this.panel4.Controls.Add(this.list_configs);
-            this.panel4.Controls.Add(this.panel2);
-            this.panel4.Location = new System.Drawing.Point(10, 96);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(278, 213);
-            this.panel4.TabIndex = 14;
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(20)))), ((int)(((byte)(60)))));
-            this.panel5.Controls.Add(this.label3);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(0, 0);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(278, 33);
-            this.panel5.TabIndex = 18;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(4, 5);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(112, 18);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Load Profiles";
-            // 
-            // list_configs
-            // 
-            this.list_configs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(50)))), ((int)(((byte)(80)))));
-            this.list_configs.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.list_configs.ForeColor = System.Drawing.Color.White;
-            this.list_configs.FormattingEnabled = true;
-            this.list_configs.Location = new System.Drawing.Point(3, 31);
-            this.list_configs.Name = "list_configs";
-            this.list_configs.Size = new System.Drawing.Size(272, 182);
-            this.list_configs.TabIndex = 16;
-            this.list_configs.SelectedIndexChanged += new System.EventHandler(this.list_configs_SelectedIndexChanged);
-            // 
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(20)))), ((int)(((byte)(60)))));
@@ -207,6 +118,9 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(50)))), ((int)(((byte)(80)))));
+            this.panel3.Controls.Add(this.label7);
+            this.panel3.Controls.Add(this.current_profile);
+            this.panel3.Controls.Add(this.button9);
             this.panel3.Controls.Add(this.panel6);
             this.panel3.Controls.Add(this.label4);
             this.panel3.Controls.Add(this.profile_name);
@@ -215,6 +129,46 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(278, 92);
             this.panel3.TabIndex = 17;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(117, 66);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(49, 13);
+            this.label7.TabIndex = 21;
+            this.label7.Text = "Current";
+            // 
+            // current_profile
+            // 
+            this.current_profile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(20)))), ((int)(((byte)(60)))));
+            this.current_profile.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.current_profile.Enabled = false;
+            this.current_profile.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.current_profile.ForeColor = System.Drawing.Color.White;
+            this.current_profile.Location = new System.Drawing.Point(7, 65);
+            this.current_profile.Multiline = true;
+            this.current_profile.Name = "current_profile";
+            this.current_profile.Size = new System.Drawing.Size(105, 20);
+            this.current_profile.TabIndex = 20;
+            this.current_profile.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // button9
+            // 
+            this.button9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(20)))), ((int)(((byte)(60)))));
+            this.button9.FlatAppearance.BorderSize = 0;
+            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button9.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button9.ForeColor = System.Drawing.Color.White;
+            this.button9.Location = new System.Drawing.Point(173, 65);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(98, 20);
+            this.button9.TabIndex = 19;
+            this.button9.Text = "Update";
+            this.button9.UseVisualStyleBackColor = false;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // panel6
             // 
@@ -236,14 +190,14 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(128, 18);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Create Profiles";
+            this.label2.Text = "Create / Update";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(244, 40);
+            this.label4.Location = new System.Drawing.Point(117, 40);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(31, 13);
             this.label4.TabIndex = 16;
@@ -253,12 +207,14 @@
             // 
             this.profile_name.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(20)))), ((int)(((byte)(60)))));
             this.profile_name.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.profile_name.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.profile_name.ForeColor = System.Drawing.Color.White;
             this.profile_name.Location = new System.Drawing.Point(7, 39);
             this.profile_name.Multiline = true;
             this.profile_name.Name = "profile_name";
-            this.profile_name.Size = new System.Drawing.Size(231, 20);
+            this.profile_name.Size = new System.Drawing.Size(105, 20);
             this.profile_name.TabIndex = 15;
+            this.profile_name.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // button4
             // 
@@ -267,9 +223,9 @@
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(7, 66);
+            this.button4.Location = new System.Drawing.Point(173, 39);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(231, 20);
+            this.button4.Size = new System.Drawing.Size(98, 20);
             this.button4.TabIndex = 18;
             this.button4.Text = "Create";
             this.button4.UseVisualStyleBackColor = false;
@@ -353,6 +309,7 @@
             // panel7
             // 
             this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(50)))), ((int)(((byte)(80)))));
+            this.panel7.Controls.Add(this.button1);
             this.panel7.Controls.Add(this.panel8);
             this.panel7.Controls.Add(this.button8);
             this.panel7.Controls.Add(this.button3);
@@ -361,6 +318,21 @@
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(278, 115);
             this.panel7.TabIndex = 18;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(20)))), ((int)(((byte)(60)))));
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(7, 72);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(86, 23);
+            this.button1.TabIndex = 24;
+            this.button1.Text = "Cyan";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // panel8
             // 
@@ -383,29 +355,82 @@
             this.label5.TabIndex = 1;
             this.label5.Text = "Gui Themes";
             // 
+            // list_configs
+            // 
+            this.list_configs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(20)))), ((int)(((byte)(60)))));
+            this.list_configs.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.list_configs.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.list_configs.ForeColor = System.Drawing.Color.White;
+            this.list_configs.FormattingEnabled = true;
+            this.list_configs.IntegralHeight = false;
+            this.list_configs.ItemHeight = 14;
+            this.list_configs.Location = new System.Drawing.Point(8, 26);
+            this.list_configs.Name = "list_configs";
+            this.list_configs.Size = new System.Drawing.Size(262, 179);
+            this.list_configs.TabIndex = 16;
+            this.list_configs.SelectedIndexChanged += new System.EventHandler(this.list_configs_SelectedIndexChanged);
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(50)))), ((int)(((byte)(80)))));
+            this.panel5.Controls.Add(this.panel4);
+            this.panel5.Controls.Add(this.list_configs);
+            this.panel5.Location = new System.Drawing.Point(10, 96);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(278, 213);
+            this.panel5.TabIndex = 23;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(20)))), ((int)(((byte)(60)))));
+            this.panel4.Controls.Add(this.label8);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(278, 20);
+            this.panel4.TabIndex = 13;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(3, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(80, 18);
+            this.label8.TabIndex = 1;
+            this.label8.Text = "Skin Sets";
+            // 
+            // logs
+            // 
+            this.logs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(50)))), ((int)(((byte)(80)))));
+            this.logs.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.logs.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.logs.ForeColor = System.Drawing.Color.Red;
+            this.logs.Location = new System.Drawing.Point(298, 315);
+            this.logs.Name = "logs";
+            this.logs.Size = new System.Drawing.Size(278, 23);
+            this.logs.TabIndex = 25;
+            this.logs.Text = "";
+            // 
             // profile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(10)))), ((int)(((byte)(35)))));
+            this.Controls.Add(this.logs);
+            this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel7);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel1);
             this.Name = "profile";
             this.Size = new System.Drawing.Size(586, 347);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel2.ResumeLayout(false);
-            this.flowLayoutPanel2.ResumeLayout(false);
-            this.flowLayoutPanel2.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel6.ResumeLayout(false);
@@ -413,6 +438,9 @@
             this.panel7.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -422,12 +450,6 @@
         public System.Windows.Forms.Panel panel1;
         public System.Windows.Forms.PictureBox pictureBox1;
         public System.Windows.Forms.Label label1;
-        public System.Windows.Forms.Panel panel2;
-        public System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
-        public System.Windows.Forms.Label label6;
-        public System.Windows.Forms.Button button1;
-        public System.Windows.Forms.Panel panel4;
-        public System.Windows.Forms.ListBox list_configs;
         public System.Windows.Forms.Button button2;
         public System.Windows.Forms.Panel panel3;
         public System.Windows.Forms.Label label2;
@@ -437,13 +459,20 @@
         public System.Windows.Forms.Button button5;
         public System.Windows.Forms.Button button6;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Panel panel5;
-        public System.Windows.Forms.Label label3;
         public System.Windows.Forms.Button button8;
         public System.Windows.Forms.Button button7;
         public System.Windows.Forms.Button button3;
         public System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Panel panel8;
         public System.Windows.Forms.Label label5;
+        public System.Windows.Forms.Label label7;
+        public System.Windows.Forms.TextBox current_profile;
+        public System.Windows.Forms.Button button9;
+        public System.Windows.Forms.ListBox list_configs;
+        public System.Windows.Forms.Panel panel5;
+        public System.Windows.Forms.Panel panel4;
+        public System.Windows.Forms.Label label8;
+        public System.Windows.Forms.Button button1;
+        private System.Windows.Forms.RichTextBox logs;
     }
 }

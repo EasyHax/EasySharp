@@ -195,9 +195,12 @@
     </Compile>
     <Compile Include="Features\Utils.cs" />
     <Compile Include="Interfaces\baseInterface.cs" />
-    <Compile Include="Interfaces\MaterialSystem.cs" />
-    <Compile Include="Interfaces\ModelRender.cs" />
-    <Compile Include="Interfaces\ModelCache.cs" />
+    <Compile Include="Interfaces\IClientNetworkable.cs" />
+    <Compile Include="Interfaces\IClientRenderable.cs" />
+    <Compile Include="Interfaces\IClientUnknown.cs" />
+    <Compile Include="Interfaces\IMaterialSystem.cs" />
+    <Compile Include="Interfaces\IModelRender.cs" />
+    <Compile Include="Interfaces\IModelCache.cs" />
     <Compile Include="Offset.cs" />
     <Compile Include="Utils\NetvarManager.cs" />
     <Compile Include="Utils\ProxyHook.cs" />
@@ -221,15 +224,15 @@
     </Compile>
     <Compile Include="Hook.cs" />
     <Compile Include="Interface.cs" />
-    <Compile Include="Interfaces\Localize.cs" />
-    <Compile Include="Interfaces\Panel.cs" />
-    <Compile Include="Interfaces\ModelInfo.cs" />
-    <Compile Include="Interfaces\DebugOverlay.cs" />
-    <Compile Include="Interfaces\Entity.cs" />
-    <Compile Include="Interfaces\Client.cs" />
-    <Compile Include="Interfaces\Surface.cs" />
-    <Compile Include="Interfaces\Engine.cs" />
-    <Compile Include="Interfaces\EngineTrace.cs" />
+    <Compile Include="Interfaces\ILocalize.cs" />
+    <Compile Include="Interfaces\IPanel.cs" />
+    <Compile Include="Interfaces\IModelInfo.cs" />
+    <Compile Include="Interfaces\IDebugOverlay.cs" />
+    <Compile Include="Interfaces\IEntity.cs" />
+    <Compile Include="Interfaces\IClient.cs" />
+    <Compile Include="Interfaces\ISurface.cs" />
+    <Compile Include="Interfaces\IEngine.cs" />
+    <Compile Include="Interfaces\IEngineTrace.cs" />
     <Compile Include="Gui\knife.cs">
       <SubType>UserControl</SubType>
     </Compile>

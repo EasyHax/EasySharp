@@ -12,8 +12,10 @@ namespace SharpSkin_dll
 {
     unsafe class DumpSkins
     {
-        public static List<SharpSkin_Weapon> sharpSkin_Skins = new List<SharpSkin_Weapon>();
-        public static List<(int, string)> sharpSkin_AllSkins = new List<(int, string)>();
+        public static List<WeaponKitInfo> ListSkins  = new List<WeaponKitInfo>();
+        public static List<WeaponKitInfo> ListGloves = new List<WeaponKitInfo>();
+        public static List<(int, string)> ListAllSkins  = new List<(int, string)>();
+     
         public static int[] sharpSkin_SkinId;
 
         [UnmanagedFunctionPointer( CallingConvention.Cdecl )]
@@ -27,7 +29,7 @@ namespace SharpSkin_dll
 
         public static void Dump()
         {
-            var sig_address        = Memory.PatternScan(SharpSkin.g_Client.mHandle, SharpSkin.g_Client.mSize, "E8 ?? ?? ?? ?? FF 76 0C 8D 48 04 E8");
+            var sig_address        = Memory.PatternScan(g_Client.mHandle, g_Client.mSize, "E8 ?? ?? ?? ?? FF 76 0C 8D 48 04 E8");
             var item_system_offset = *(int*)(sig_address + 1);
             var item_system_fn     = sig_address + 5 + item_system_offset;
             var item_System        = Marshal.GetDelegateForFunctionPointer<item_system>(item_system_fn);
@@ -40,7 +42,7 @@ namespace SharpSkin_dll
             var head_offset    = start_element_offset - 12;
             var map_head       = item_schema + head_offset;
             var last_element   = *(int*)(map_head + 0x0018);
-            var ptr            = (Head_t*)(map_head);
+            var ptr            = (Head_t*)map_head;
 
             var V_UCS2ToUTF8 = WinApi.getApi<d_V_UCS2ToUTF8>("V_UCS2ToUTF8", "vstdlib.dll", out _);
             var output       = Marshal.AllocHGlobal(256);
@@ -56,37 +58,43 @@ namespace SharpSkin_dll
                 var raw_item  = g_Localize.FindItem(itemName);
                 var length    = V_UCS2ToUTF8(raw_item, output, 256);
                 var skin_name = Encoding.UTF8.GetString((byte*)output, length - 1);
-                sharpSkin_AllSkins.Add( (paint_kit->id, skin_name) );
-
-                var skin_info = Parser.Parse(itemName);
-                if ( skin_info.Item1 == "ERROR" )
-                    continue;
 
 
-                sharpSkin_Skins.Add( new SharpSkin_Weapon( paint_kit->id, skin_info.Item2, skin_info.Item1, skin_name ) );
+                if (paint_kit->id < 10000)
+                {
+                    ListAllSkins.Add((paint_kit->id, skin_name));
+                    var skin_info = Parser.Parse(itemName);
+                    
+                    if (skin_info.Item1 == "ERROR")
+                        continue;
+
+                    ListSkins.Add(new WeaponKitInfo(paint_kit->id, skin_info.Item2, skin_info.Item1, skin_name));
+                }
+                else
+                {
+                    var skin_info = Parser.Parse(itemName, true);
+                    ListGloves.Add(new WeaponKitInfo(paint_kit->id, skin_info.Item2, skin_info.Item1, skin_name));
+                }
             }
 
-            sharpSkin_AllSkins = sharpSkin_AllSkins.OrderBy(x => x.Item2).ToList();
+            ListAllSkins = ListAllSkins.OrderBy(x => x.Item2).ToList();
 
-            sharpSkin_SkinId = sharpSkin_AllSkins.Select( x => x.Item1 ).ToArray();
+            sharpSkin_SkinId = ListAllSkins.Select( x => x.Item1 ).ToArray();
         }
 
-        public struct SharpSkin_Weapon
+        public struct WeaponKitInfo
         {
-            public SharpSkin_Weapon( int id, string weapon, string name, string translated_name )
-            {
-                this.id = id;
-                this.name = name;
-                this.translated_name = translated_name;
-                this.weapon = weapon;
-                this.index = (ItemDefinitionIndex)Enum.Parse( typeof( ItemDefinitionIndex ), weapon );
-            }
-
-            public readonly int id;
-            public readonly string name;
-            public readonly string translated_name;
-            public readonly string weapon;
+            public readonly int     kitid;
+            public readonly string  name;
+            public readonly string  rawname;
+            public readonly string  type;
             public readonly ItemDefinitionIndex index;
+
+            public WeaponKitInfo( int kitid, string type, string rawname, string name )
+            {
+                (this.kitid, this.name, this.rawname, this.type) = (kitid, name, rawname, type);
+                index = (ItemDefinitionIndex)Enum.Parse( typeof( ItemDefinitionIndex ), type);
+            }
         }
 
         struct Node_t
@@ -180,7 +188,7 @@ namespace SharpSkin_dll
         SCAR20 = 38,
         SG553 = 39,
         SSG08 = 40,
-        KNIFE = 42,
+        KNIFE_CT = 42,
         FLASHBANG = 43,
         HEGRENADE = 44,
         SMOKEGRENADE = 45,
@@ -188,7 +196,7 @@ namespace SharpSkin_dll
         DECOY = 47,
         INCGRENADE = 48,
         C4 = 49,
-        _T_ = 59,
+        KNIFE_T = 59,
         M4A1_SILENCER = 262204,
         USP_SILENCER = 262205,
         CZ75A = 63,
@@ -219,14 +227,15 @@ namespace SharpSkin_dll
 
         //Gloves
 
-        STUDDED_BLOODHOUND = 5027,
+        BLOODHOUND = 5027,
         T_SIDE = 5028,
-        C_TSIDE = 5029,
+        CT_SIDE = 5029,
         SPORTY = 5030,
         SLICK = 5031,
         LEATHER_WRAP = 5032,
         MOTORCYCLE = 5033,
         SPECIALIST = 5034,
-        GHYDRA = 5035
+        HYDRA = 5035,
+        BROKEN_FANG = 4725
     }
 }

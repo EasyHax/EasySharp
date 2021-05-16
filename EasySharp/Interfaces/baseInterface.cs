@@ -29,10 +29,10 @@ namespace SharpSkin_dll
             return ptr;
         }
 
-        public Delegate WrapVFunc(int index, Type return_Type, params Type[] args_Type) =>
+        protected Delegate WrapVFunc(int index, Type return_Type, params Type[] args_Type) =>
             addr.VirtualAddress(index).deleg(CreateDelegate(return_Type, args_Type));
 
-        public T CallVFunc<T>(Delegate vfunc, params object[] args)
+        protected T CallVFunc<T>(Delegate vfunc, params object[] args)
             => (T)vfunc.DynamicInvoke(args);
     }
 }

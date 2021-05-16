@@ -63,6 +63,7 @@
             this.fallback = new System.Windows.Forms.TrackBar();
             this.randomSkins = new System.Windows.Forms.CheckBox();
             this.label13 = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -71,6 +72,7 @@
             this.panel3.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fallback)).BeginInit();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -242,22 +244,25 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(20)))), ((int)(((byte)(60)))));
-            this.panel4.Controls.Add(this.list_sets);
             this.panel4.Controls.Add(this.label8);
-            this.panel4.Location = new System.Drawing.Point(10, 96);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(345, 211);
+            this.panel4.Size = new System.Drawing.Size(342, 20);
             this.panel4.TabIndex = 13;
             // 
             // list_sets
             // 
-            this.list_sets.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(50)))), ((int)(((byte)(80)))));
+            this.list_sets.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(20)))), ((int)(((byte)(60)))));
             this.list_sets.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.list_sets.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.list_sets.ForeColor = System.Drawing.Color.White;
             this.list_sets.FormattingEnabled = true;
-            this.list_sets.Location = new System.Drawing.Point(3, 28);
+            this.list_sets.IntegralHeight = false;
+            this.list_sets.ItemHeight = 14;
+            this.list_sets.Location = new System.Drawing.Point(8, 27);
             this.list_sets.Name = "list_sets";
-            this.list_sets.Size = new System.Drawing.Size(339, 182);
+            this.list_sets.Size = new System.Drawing.Size(326, 179);
             this.list_sets.TabIndex = 16;
             // 
             // label8
@@ -265,7 +270,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(3, 9);
+            this.label8.Location = new System.Drawing.Point(3, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(80, 18);
             this.label8.TabIndex = 1;
@@ -335,6 +340,7 @@
             // 
             this.seed_value.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(20)))), ((int)(((byte)(60)))));
             this.seed_value.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.seed_value.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.seed_value.ForeColor = System.Drawing.Color.White;
             this.seed_value.Location = new System.Drawing.Point(107, 60);
             this.seed_value.Multiline = true;
@@ -358,6 +364,7 @@
             // 
             this.stattrack_value.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(20)))), ((int)(((byte)(60)))));
             this.stattrack_value.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.stattrack_value.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stattrack_value.ForeColor = System.Drawing.Color.White;
             this.stattrack_value.Location = new System.Drawing.Point(6, 60);
             this.stattrack_value.Multiline = true;
@@ -370,6 +377,7 @@
             // 
             this.custom_name.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(20)))), ((int)(((byte)(60)))));
             this.custom_name.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.custom_name.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.custom_name.ForeColor = System.Drawing.Color.White;
             this.custom_name.Location = new System.Drawing.Point(6, 88);
             this.custom_name.Multiline = true;
@@ -474,17 +482,27 @@
             this.label13.TabIndex = 13;
             this.label13.Text = "Random Skin";
             // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(50)))), ((int)(((byte)(80)))));
+            this.panel5.Controls.Add(this.list_sets);
+            this.panel5.Controls.Add(this.panel4);
+            this.panel5.Location = new System.Drawing.Point(10, 96);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(342, 213);
+            this.panel5.TabIndex = 18;
+            // 
             // weapons
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(10)))), ((int)(((byte)(35)))));
+            this.Controls.Add(this.panel5);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.randomSkins);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "weapons";
@@ -504,6 +522,7 @@
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fallback)).EndInit();
+            this.panel5.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -545,5 +564,6 @@
         public System.Windows.Forms.Label label13;
         public System.Windows.Forms.TextBox seed_value;
         public System.Windows.Forms.Label label15;
+        public System.Windows.Forms.Panel panel5;
     }
 }

@@ -28,7 +28,11 @@ namespace SharpSkin_dll
 
         private void button4_Click(object sender, EventArgs e)
         {
+            if (profile_name.Text == string.Empty)
+                return;
+
             Config.Save(profile_name.Text);
+            current_profile.Text = profile_name.Text;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -36,7 +40,17 @@ namespace SharpSkin_dll
             if (list_configs.SelectedIndex == -1)
                 return;
 
-            Config.Load((string)list_configs.SelectedItem);
+            var profile_name = (string)list_configs.SelectedItem;
+            try
+            {
+                Config.Load(profile_name);
+                current_profile.Text = profile_name;
+                Log(string.Format("Profile {0} loaded successfuly", profile_name));
+            }
+            catch
+            {
+                Log(string.Format("Profile {0} is corrupted", profile_name));
+            }
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -61,11 +75,23 @@ namespace SharpSkin_dll
         private void button3_Click(object sender, EventArgs e) => GuiTheme.DarkTheme();
         private void button7_Click(object sender, EventArgs e) => GuiTheme.RandomTheme();
         private void button8_Click(object sender, EventArgs e) => GuiTheme.PurpleTheme();
+        private void button1_Click(object sender, EventArgs e) => GuiTheme.CyanTheme();
 
         private void list_configs_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (list_configs.SelectedIndex == -1) return;
-            profile_name.Text = (string)list_configs.SelectedItem;
+            current_profile.Text = (string)list_configs.SelectedItem;
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            Config.Save(current_profile.Text);
+            Log(string.Format("Saved profile successfuly {0}", current_profile.Text));
+        }
+
+        private void Log(string msg)
+        {
+            logs.AppendText(msg + Environment.NewLine);
         }
     }
 
@@ -86,11 +112,17 @@ namespace SharpSkin_dll
 
             foreach (var line in lines)
             {
+                if (line.Substring(0, 5) == "[glo]")
+                {
+                    var kit = getKit(line);
+                    SkinChanger.gloveKit = kit;
+                    form.knife1.list_sets.Items.AddNewKit(kit, "gloves:");
+                }
                 if (line.Substring(0, 5) == "[kni]")
                 {
                     var kit = getKit(line);
                     SkinChanger.knifeKit = kit;
-                    form.knife1.list_sets.Items.AddNewKit(kit);
+                    form.knife1.list_sets.Items.AddNewKit(kit, "knife:");
                 }
                 else if (line.Substring(0, 5) == "[kit]")
                 {
@@ -185,10 +217,12 @@ namespace SharpSkin_dll
             add("chams_s_alpha", form.chams1.alpha_sleeves.Value);
             add("chams_g_alpha", form.chams1.alpha_gloves.Value);
 
-            if (form.knife1.list_sets.Items.Count != 0)
-                addKit(SkinChanger.knifeKit, true);
+            if (form.knife1.list_sets.FindString("GLOVES") != -1)
+                addKit(SkinChanger.gloveKit, "[glo]");
+            if (form.knife1.list_sets.FindString("KNIFE") != -1)
+                addKit(SkinChanger.knifeKit, "[kni]");
             foreach (var weaponKit in SkinChanger.weaponKits)
-                addKit(weaponKit, false);
+                addKit(weaponKit);
 
             File.WriteAllLines(config_path + filename + ".cfg", new_lines);
 
@@ -210,11 +244,11 @@ namespace SharpSkin_dll
         public static T get_var<T>(string var_name) => (T)Convert.ChangeType(cfg[var_name], typeof(T));
         public static void add(string key, object value) => new_lines.Add(string.Format($"{key}#{value}"));
 
-        public static void addKit( WeaponKit weaponKit, bool isKnife ) => 
-            new_lines.Add($"{(isKnife ? "[kni]" : "[kit]")}" +
-            $"{weaponKit.skin_id}#{weaponKit.item_index}#{weaponKit.weapon}" +
-            $"#{weaponKit.fallback.ToString(CultureInfo.InvariantCulture)}" +
-            $"#{weaponKit.stattrack}#{weaponKit.customname}#{weaponKit.seed}#");
+        public static void addKit( WeaponKit weaponKit, string tag = "[kit]" ) => 
+            new_lines.Add($"{tag}" + $"{weaponKit.skin_id}#" +
+                $"{weaponKit.item_index}#{weaponKit.weapon}" +
+                $"#{weaponKit.fallback.ToString(CultureInfo.InvariantCulture)}" +
+                $"#{weaponKit.stattrack}#{weaponKit.customname}#{weaponKit.seed}#");
         
         public static WeaponKit getKit(string rawKit)
         {

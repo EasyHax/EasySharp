@@ -20,8 +20,23 @@ namespace SharpSkin_dll
          * #PaintKit_am_dragon_glock_Tag"
          */
 
-        public static (string, string) Parse(string item_name)
+        public static (string, string) Parse(string item_name, bool is_glove = false)
         {
+            if ( is_glove )
+            {
+                item_name = item_name.ToUpper();
+                if (item_name.Contains("BLOODHOUND_HYDRA")) return ("", "HYDRA"             );
+                if (item_name.Contains("SPORTY"         ))  return ("", "SPORTY"            );
+                if (item_name.Contains("SLICK"          ))  return ("", "SLICK"             );
+                if (item_name.Contains("HANDWRAP"       ))  return ("", "LEATHER_WRAP"      );
+                if (item_name.Contains("MOTORCYCLE"     ))  return ("", "MOTORCYCLE"        );
+                if (item_name.Contains("SPECIALIST"     ))  return ("", "SPECIALIST"        );
+                if (item_name.Contains("BLOODHOUND"     ))  return ("", "BLOODHOUND"        );
+                if (item_name.Contains("OPERATION10"    ))  return ("", "BROKEN_FANG"       );
+
+                return ("ERROR", "ERROR");
+            }
+
             if (item_name.Contains("m4a1-s"))
                 item_name = item_name.Replace("m4a1-s", "m4a1_silencer");
             if (item_name.Contains("usp-s"))
@@ -90,15 +105,21 @@ namespace SharpSkin_dll
             else return 0f;
         }
 
-        public static void AddNewKit(this ListBox.ObjectCollection objectCollection, WeaponKit weaponKit)
+        public static void AddNewKit(this ListBox.ObjectCollection objectCollection, WeaponKit weaponKit, string tag = "")
         {
-            var str = string.Format("{0} \t {1} \t {2} \t {3} \t {4} \t {5}",
+            weaponKit.weapon = weaponKit.weapon // for alignement
+                .Replace("_SILENCER", "S")
+                .Replace("FIVESEVEN", "FSEVEN")
+                .Replace("REVOLVER", "R8")
+                .Replace("SAWEDOFF", "SDOFF");
+
+            var str = string.Format("{5}{0}\t{1}\t{2}\t{3}\t{4}",
                 weaponKit.skin_id,
-                weaponKit.item_index,
                 weaponKit.weapon,
                 weaponKit.fallback,
                 weaponKit.stattrack,
-                weaponKit.customname
+                weaponKit.customname,
+                tag
                 );
 
             objectCollection.Add(str);

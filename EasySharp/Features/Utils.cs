@@ -16,6 +16,14 @@ namespace SharpSkin_dll
 {
     class Utils
     {
+        public unsafe static ClientClass* GetClass(string ClassName)
+        {
+            for (ClientClass* pClass = g_Client.GetAllClasses(); (IntPtr)pClass != IntPtr.Zero; pClass = pClass->m_pNext)
+                if (Marshal.PtrToStringAnsi((IntPtr)pClass->m_pNetworkName) == ClassName)
+                    return pClass;
+            return (ClientClass*)IntPtr.Zero;
+        }
+
         public static IEnumerable<BasePlayer> GetPlayers()
         {
             var players = new List<BasePlayer>();

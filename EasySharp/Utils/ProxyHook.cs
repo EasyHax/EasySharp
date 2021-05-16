@@ -21,26 +21,24 @@ namespace SharpSkin_dll
             if (bHooked)
                 return;
 
-            for (ClientClass* pClass = g_Client.GetAllClasses(); (IntPtr)pClass != IntPtr.Zero; pClass = pClass->m_pNext)
-                if (Marshal.PtrToStringAnsi((IntPtr)pClass->m_pNetworkName) == "CBaseViewModel")
+            var pBaseViewModel = Utils.GetClass("CBaseViewModel");
+
+            var pClassTable = pBaseViewModel->m_pRecvTable;
+
+            for (int nIndex = 0; nIndex < pClassTable->m_nProps; nIndex++)
+            {
+                var pProp = &pClassTable->m_pProps[nIndex];
+
+                if (Marshal.PtrToStringAnsi((IntPtr)pProp->m_pVarName) == "m_nSequence")
                 {
-                    var pClassTable = pClass->m_pRecvTable;
-
-                    for (int nIndex = 0; nIndex < pClassTable->m_nProps; nIndex++)
-                    {
-                        var pProp = &pClassTable->m_pProps[nIndex];
-
-                        if (Marshal.PtrToStringAnsi((IntPtr)pProp->m_pVarName) == "m_nSequence")
-                        {
-                            o_pSequence_Prop = pProp;
-                            o_ProxyFn = pProp->m_ProxyFn;
-                            o_SetViewModelSequence = Marshal.GetDelegateForFunctionPointer<SetViewModelSequence>(o_ProxyFn);
-                            pProp->m_ProxyFn = Marshal.GetFunctionPointerForDelegate(hkSetViewModelSequence_callback);
-                            bHooked = true;
-                            return;
-                        }
-                    }
+                    o_pSequence_Prop = pProp;
+                    o_ProxyFn = pProp->m_ProxyFn;
+                    o_SetViewModelSequence = Marshal.GetDelegateForFunctionPointer<SetViewModelSequence>(o_ProxyFn);
+                    pProp->m_ProxyFn = Marshal.GetFunctionPointerForDelegate(hkSetViewModelSequence_callback);
+                    bHooked = true;
+                    break;
                 }
+            }
         }
 
         public static void UnHook()

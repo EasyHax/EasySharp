@@ -15,7 +15,6 @@ namespace SharpSkin_dll
     public partial class weapons : UserControl
     {
         static Dictionary<string, List<(int, string)>> skins_sorted = new Dictionary<string, List<(int, string)>>();
-        static List<(int, string)> cur_weapon_skins = new List<(int, string)>();
 
         static bool is_from_allskins_list = false;
         
@@ -29,25 +28,23 @@ namespace SharpSkin_dll
             allskins_list.MouseDown += AllSkins_List_MouseDown;
             skins_list.MouseDown += Skins_List_MouseDown;
 
-            foreach (var skin in DumpSkins.sharpSkin_AllSkins)
+            foreach (var skin in DumpSkins.ListAllSkins)
                 allskins_list.Items.Add(skin.Item2);
 
             fallback_value.Text = "10";
 
-            var weapons_type = new List<object>();
-
-            foreach (var paintkit_info in DumpSkins.sharpSkin_Skins)
+            foreach (var paintkit_info in DumpSkins.ListSkins)
             {
-                var weapon_type = paintkit_info.weapon;
+                var weapon_type = paintkit_info.type;
 
                 if (!skins_sorted.ContainsKey(weapon_type))
                 {
                     var weapon_skins = new List<(int, string)>();
 
-                    foreach (var skin in DumpSkins.sharpSkin_Skins)
-                        if (skin.weapon == weapon_type)
+                    foreach (var skin in DumpSkins.ListSkins)
+                        if (skin.type == weapon_type)
                         {
-                            weapon_skins.Add((skin.id, skin.translated_name));
+                            weapon_skins.Add((skin.kitid, skin.name));
                         }
 
                     weapon_skins = weapon_skins.OrderBy(x => x.Item2).ToList();
@@ -91,14 +88,12 @@ namespace SharpSkin_dll
                 customname = custom_name.Text,
                 weapon = (string)weapons_list.SelectedItem,
                 fallback = Parser.FallBackFromInt(int.Parse(fallback_value.Text)),
-                skin_id = DumpSkins.sharpSkin_AllSkins.Find(x => x.Item2 == (is_from_allskins_list ? (string)allskins_list.SelectedItem : (string)skins_list.SelectedItem)).Item1
+                skin_id = DumpSkins.ListAllSkins.Find(x => x.Item2 == (is_from_allskins_list ? (string)allskins_list.SelectedItem : (string)skins_list.SelectedItem)).Item1
             };
 
-            var i = is_from_allskins_list 
-                ? DumpSkins.sharpSkin_AllSkins[allskins_list.SelectedIndex].Item1 
-                : cur_weapon_skins[skins_list.SelectedIndex].Item1;
-
-            weaponKit.skin_id = i;
+            weaponKit.skin_id = is_from_allskins_list
+                ? DumpSkins.ListAllSkins[allskins_list.SelectedIndex].Item1
+                : skins_sorted[(string)weapons_list.SelectedItem][skins_list.SelectedIndex].Item1;
 
             weaponKit.item_index = (int)Enum.Parse(typeof(ItemDefinitionIndex), weaponKit.weapon);
             int.TryParse(   stattrack_value.Text, out weaponKit.stattrack  );
@@ -126,11 +121,9 @@ namespace SharpSkin_dll
 
         private void knifes_list_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cur_weapon_skins = skins_sorted[(string)weapons_list.SelectedItem];
-
             skins_list.Items.Clear();
             skins_list.Text = "";
-            skins_list.Items.AddRange(cur_weapon_skins.Select(x => x.Item2).ToArray());
+            skins_list.Items.AddRange(skins_sorted[(string)weapons_list.SelectedItem].Select(x => x.Item2).ToArray());
         }
 
         private void fallback_Scroll(object sender, EventArgs e)

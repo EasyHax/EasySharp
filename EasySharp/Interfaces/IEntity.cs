@@ -13,14 +13,17 @@ namespace SharpSkin_dll
     {
         private Delegate getClientEntity;
         private Delegate getClientEntityFromHandle;
+        private Delegate getHighestEntityIndex;
 
         public Entity((IntPtr, IntPtr, int) infos) : base(infos)
         {
             getClientEntity = WrapVFunc(3, t_IntPtr, t_Int32);
             getClientEntityFromHandle = WrapVFunc(4, t_IntPtr, t_IntPtr);
+            getHighestEntityIndex = WrapVFunc(6, t_Int32);
         }
 
         public IntPtr GetClientEntity(int num) => (IntPtr)getClientEntity.DynamicInvoke(addr, num);
         public IntPtr GetClientEntityFromHandle(IntPtr handle) => (IntPtr)getClientEntityFromHandle.DynamicInvoke(addr, handle);
+        public int GetHighestEntityIndex() => (int)getHighestEntityIndex.DynamicInvoke(addr);
     }
 }

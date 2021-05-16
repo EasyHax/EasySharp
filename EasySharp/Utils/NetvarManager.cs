@@ -192,7 +192,8 @@ namespace SharpSkin_dll
 
     unsafe public struct ClientClass
     {
-        fixed byte __pad[0x8];
+        public IntPtr m_pCreateFn;
+        public IntPtr m_pCreateEventFn;
         public char* m_pNetworkName;
         public RecvTable* m_pRecvTable;
         public ClientClass* m_pNext;

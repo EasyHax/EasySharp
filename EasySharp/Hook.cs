@@ -122,11 +122,12 @@ namespace SharpSkin_dll
                 //Console.WriteLine("unhooked");
             }
             */
+            if (frame_stage == 2 && (form.weapons1.weapon_enabled.Checked || form.knife1.knife_enabled.Checked))
+                SkinChanger.Do();
 
             o_FrameStageNotify( frame_stage );
 
-            if (frame_stage == 2 && (form.weapons1.weapon_enabled.Checked || form.knife1.knife_enabled.Checked)) 
-                SkinChanger.Do();
+
         }
 
         public static void hkCreateMove(int sequence_number, float input_sample_frametime, bool active)

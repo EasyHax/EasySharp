@@ -41,7 +41,9 @@ namespace SharpSkin_dll
                     { "Rust Coat",           414 },
                     { "Bright water",        0   },
                     { "Autotronic",          0   }
-                };
+        };
+
+        static Dictionary<string, List<(int, string)>> skins_sorted = new Dictionary<string, List<(int, string)>>();
 
         public knife()
         {
@@ -50,9 +52,31 @@ namespace SharpSkin_dll
             fallback_value.Text = "10";
 
             seed_value.KeyPress += Seed_value_KeyPress;
-            stattrack_value.KeyPress += Stattrack_value_KeyPress;
+            stat_track.KeyPress += Stattrack_value_KeyPress;
 
             skins_list.Items.AddRange(skins.Keys.ToArray());
+
+            foreach (var paintkit_info in DumpSkins.ListGloves)
+            {
+                var glove_type = paintkit_info.type;
+
+                if (!skins_sorted.ContainsKey(glove_type))
+                {
+                    var glove_skins = new List<(int, string)>();
+
+                    foreach (var skin in DumpSkins.ListGloves)
+                        if (skin.type == glove_type)
+                        {
+                            glove_skins.Add((skin.kitid, skin.name));
+                        }
+
+                    glove_skins = glove_skins.OrderBy(x => x.Item2).ToList();
+                    skins_sorted.Add(glove_type, glove_skins);
+                }
+            }
+
+            skins_sorted = skins_sorted.OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value);
+            gloves_list.Items.AddRange(skins_sorted.Keys.ToArray());
         }
 
         private void fallback_Scroll(object sender, EventArgs e)
@@ -68,38 +92,6 @@ namespace SharpSkin_dll
         private void Seed_value_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (skins_list.SelectedIndex == -1 || knifes_list.SelectedIndex == -1)
-                return;
-
-            var skin = skins_list.SelectedItem;
-
-            var weaponKit = new WeaponKit()
-            {
-                customname = custom_name.Text,
-                weapon = (string)knifes_list.SelectedItem,
-                fallback = Parser.FallBackFromInt(int.Parse(fallback_value.Text))
-            };
-
-            weaponKit.skin_id = KnifeNameToSkin((string)skins_list.SelectedItem, weaponKit.weapon);
-            weaponKit.item_index = (int)Enum.Parse(typeof(ItemDefinitionIndex), weaponKit.weapon);
-            int.TryParse(   stattrack_value.Text, out weaponKit.stattrack  );
-            int.TryParse(   seed_value.Text,      out weaponKit.seed       );
-
-            knifeKit = weaponKit;
-            if (list_sets.Items.Count > 0) list_sets.Items.RemoveAt(0);
-            list_sets.Items.AddNewKit(weaponKit);
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if (list_sets.SelectedIndex == -1) return;
-
-            knifeKit = new WeaponKit();
-            list_sets.Items.RemoveAt(0);
         }
 
         public int KnifeNameToSkin(string skinname, string knifename)
@@ -133,6 +125,83 @@ namespace SharpSkin_dll
                 }
 
             return skins.FirstOrDefault(x => x.Key == skinname).Value;
+        }
+
+        private void gloves_list_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if ((string)gloves_list.SelectedItem == "CT_SIDE" || (string)gloves_list.SelectedItem == "T_SIDE")
+            {
+                if (list_sets.FindString("gloves") != -1)
+                    list_sets.Items.RemoveAt(list_sets.FindString("gloves"));
+
+                gloveKit = new WeaponKit() { weapon = (string)gloves_list.SelectedItem, customname = string.Empty };
+                list_sets.Items.AddNewKit(gloveKit, "gloves:");
+                return;
+            }
+
+            gskins_list.Items.Clear();
+            gskins_list.Text = "";
+            gskins_list.Items.AddRange(skins_sorted[(string)gloves_list.SelectedItem].Select(x => x.Item2).ToArray());
+        }
+
+        private void gskins_list_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            gloveKit.item_index = (int)Enum.Parse(typeof(ItemDefinitionIndex), (string)gloves_list.SelectedItem );
+            gloveKit.skin_id = skins_sorted[(string)gloves_list.SelectedItem][gskins_list.SelectedIndex].Item1;
+            gloveKit.weapon = (string)gloves_list.SelectedItem;
+            gloveKit.fallback = Parser.FallBackFromInt(int.Parse(gfallback_value.Text));
+
+            if (list_sets.FindString("gloves") != - 1)
+                list_sets.Items.RemoveAt(list_sets.FindString("gloves"));
+
+            list_sets.Items.AddNewKit(gloveKit, "gloves:");
+        }
+
+        private void skins_list_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (skins_list.SelectedIndex == -1 || knifes_list.SelectedIndex == -1)
+                return;
+
+            knifeKit.item_index = (int)Enum.Parse(typeof(ItemDefinitionIndex), (string)knifes_list.SelectedItem);
+            knifeKit.skin_id = KnifeNameToSkin((string)skins_list.SelectedItem, knifeKit.weapon);
+            knifeKit.weapon = (string)knifes_list.SelectedItem;
+            knifeKit.fallback = Parser.FallBackFromInt(int.Parse(fallback_value.Text));
+            knifeKit.customname = custom_name.Text;
+
+            int.TryParse(stat_track.Text, out knifeKit.stattrack);
+            int.TryParse(seed_value.Text, out knifeKit.seed);
+
+            if (list_sets.FindString("knife") != -1)
+                list_sets.Items.RemoveAt(list_sets.FindString("knife"));
+
+            list_sets.Items.AddNewKit(knifeKit, "knife:");
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            gfallback_value.Text = (10 - gfallback.Value).ToString();
+        }
+
+        private void knifes_list_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            skins_list.Items.Clear();
+
+            if ((string)knifes_list.SelectedItem == "KNIFE_T" || (string)knifes_list.SelectedItem == "KNIFE_CT")
+            {
+                if (list_sets.FindString("knife") != -1)
+                    list_sets.Items.RemoveAt(list_sets.FindString("knife"));
+
+                knifeKit = new WeaponKit() { 
+                    weapon = (string)knifes_list.SelectedItem, 
+                    customname = custom_name.Text,
+                    item_index = (int)Enum.Parse(typeof(ItemDefinitionIndex), (string)knifes_list.SelectedItem)
+                };
+
+                list_sets.Items.AddNewKit(knifeKit, "knife:");
+                return;
+            }
+
+            skins_list.Items.AddRange(skins.Keys.ToArray());
         }
     }
 }

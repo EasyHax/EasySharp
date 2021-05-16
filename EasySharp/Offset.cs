@@ -684,7 +684,7 @@ namespace SharpSkin_dll
 
         }
 
-        public class BaseAttributableItem : BaseEntity
+        public class BaseAttributableItem : BaseCombatWeapon
         {
             public static implicit operator BaseAttributableItem(IntPtr ptr) => new BaseAttributableItem() { addr = ptr                                                                                                                                          };
             public int m_OriginalOwnerXuidLow {                  get => *(int*)(addr + Offset.DT_BaseAttributableItem.m_OriginalOwnerXuidLow);               set => *(int*)(addr + Offset.DT_BaseAttributableItem.m_OriginalOwnerXuidLow) = value;               }
@@ -703,7 +703,7 @@ namespace SharpSkin_dll
             public int m_iAccountID {                            get => *(int*)(addr + Offset.DT_BaseAttributableItem.m_iAccountID);                         set => *(int*)(addr + Offset.DT_BaseAttributableItem.m_iAccountID) = value;                         }
             public int m_iEntityQuality {                        get => *(int*)(addr + Offset.DT_BaseAttributableItem.m_iEntityQuality);                     set => *(int*)(addr + Offset.DT_BaseAttributableItem.m_iEntityQuality) = value;                     }
             public int m_bInitialized {                          get => *(int*)(addr + Offset.DT_BaseAttributableItem.m_bInitialized);                       set => *(int*)(addr + Offset.DT_BaseAttributableItem.m_bInitialized) = value;                       }
-            public int m_szCustomName {                          get => *(int*)(addr + Offset.DT_BaseAttributableItem.m_szCustomName);                       set => *(int*)(addr + Offset.DT_BaseAttributableItem.m_szCustomName) = value;                       }
+            public IntPtr m_szCustomName {                       get => addr + Offset.DT_BaseAttributableItem.m_szCustomName; }
             public int m_NetworkedDynamicAttributesForDemos {    get => *(int*)(addr + Offset.DT_BaseAttributableItem.m_NetworkedDynamicAttributesForDemos); set => *(int*)(addr + Offset.DT_BaseAttributableItem.m_NetworkedDynamicAttributesForDemos) = value; }
             public int m_Item {                                  get => *(int*)(addr + Offset.DT_BaseAttributableItem.m_Item);                               set => *(int*)(addr + Offset.DT_BaseAttributableItem.m_Item) = value;                               }
             public int m_AttributeManager {                      get => *(int*)(addr + Offset.DT_BaseAttributableItem.m_AttributeManager);                   set => *(int*)(addr + Offset.DT_BaseAttributableItem.m_AttributeManager) = value;                   }
@@ -1141,7 +1141,7 @@ namespace SharpSkin_dll
 
         }
 
-        public class CSPlayer : BaseEntity
+        public class CSPlayer : BaseCombatCharacter
         {
             public static implicit operator CSPlayer(IntPtr ptr) => new CSPlayer() { addr = ptr                                                                                                                                                                  };
             public int m_iCrosshairId {                          get => *(int*)(addr + Offset.DT_CSPlayer.m_bHasDefuser + 92);                               set => *(int*)(addr + Offset.DT_CSPlayer.m_bHasDefuser + 92) = value;                               }
@@ -2423,22 +2423,6 @@ namespace SharpSkin_dll
 
         public class BasePlayer : CSPlayer
         {
-            [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-            delegate int d_EntIndex(IntPtr addr);
-                    
-            public IntPtr pNetworkable { get => addr + 8; }
-            public int EntIndex() => Marshal.GetDelegateForFunctionPointer<d_EntIndex>(pNetworkable.VirtualAddress(10))(pNetworkable);
-
-            [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-            delegate IntPtr d_GetModel(IntPtr addr);
-            [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-            delegate byte d_SetupBones(IntPtr addr, IntPtr pBoneToWorldOut, int nMaxBones, int boneMask, float currentTime);
-
-            public IntPtr pClientRenderable { get => addr + 4; }
-            public IntPtr GetModel() => Marshal.GetDelegateForFunctionPointer<d_GetModel>(pClientRenderable.VirtualAddress(8))(pClientRenderable);
-            public bool SetupBone(IntPtr pBoneToWorldOut, int nMaxBones, int boneMask, float currentTime) => Marshal.GetDelegateForFunctionPointer<d_SetupBones>(pClientRenderable.VirtualAddress(13))(pClientRenderable, pBoneToWorldOut, nMaxBones, boneMask, currentTime) != 0;
-
-
             bool did = false;
 
             // Not working at all
@@ -2616,7 +2600,7 @@ namespace SharpSkin_dll
 
         }
 
-        public class BaseEntity : baseStructs
+        public class BaseEntity : IClientNetworkable
         {
             public static implicit operator BaseEntity(IntPtr ptr) => new BaseEntity() { addr = ptr                                                                                                                                                              };
             public int m_flSimulationTime {                      get => *(int*)(addr + Offset.DT_BaseEntity.m_flSimulationTime);                             set => *(int*)(addr + Offset.DT_BaseEntity.m_flSimulationTime) = value;                             }
@@ -2683,7 +2667,7 @@ namespace SharpSkin_dll
 
         }
 
-        public class BaseCombatCharacter : baseStructs
+        public class BaseCombatCharacter : BaseEntity
         {
             public static implicit operator BaseCombatCharacter(IntPtr ptr) => new BaseCombatCharacter() { addr = ptr                                                                                                                                            };
             public int m_LastHitGroup {                          get => *(int*)(addr + Offset.DT_BaseCombatCharacter.m_LastHitGroup);                        set => *(int*)(addr + Offset.DT_BaseCombatCharacter.m_LastHitGroup) = value;                        }
@@ -2694,7 +2678,7 @@ namespace SharpSkin_dll
             public int bcc_localdata {                           get => *(int*)(addr + Offset.DT_BaseCombatCharacter.bcc_localdata);                         set => *(int*)(addr + Offset.DT_BaseCombatCharacter.bcc_localdata) = value;                         }
             public int bcc_nonlocaldata {                        get => *(int*)(addr + Offset.DT_BaseCombatCharacter.bcc_nonlocaldata);                      set => *(int*)(addr + Offset.DT_BaseCombatCharacter.bcc_nonlocaldata) = value;                      }
             public int m_hMyWeapons {                            get => *(int*)(addr + Offset.DT_BaseCombatCharacter.m_hMyWeapons);                          set => *(int*)(addr + Offset.DT_BaseCombatCharacter.m_hMyWeapons) = value;                          }
-            public int m_hMyWearables {                          get => *(int*)(addr + Offset.DT_BaseCombatCharacter.m_hMyWearables);                        set => *(int*)(addr + Offset.DT_BaseCombatCharacter.m_hMyWearables) = value;                        }
+            public IntPtr* m_hMyWearables {                      get => (IntPtr*)(addr + Offset.DT_BaseCombatCharacter.m_hMyWearables); }
 
         }
 
@@ -2816,7 +2800,7 @@ namespace SharpSkin_dll
 
         }
 
-        public class BaseCombatWeapon : baseStructs
+        public class BaseCombatWeapon : BaseEntity
         {
             public static implicit operator BaseCombatWeapon(IntPtr ptr) => new BaseCombatWeapon() { addr = ptr                                                                                                                                                  };
             public int m_iViewModelIndex {                       get => *(int*)(addr + Offset.DT_BaseCombatWeapon.m_iViewModelIndex);                        set => *(int*)(addr + Offset.DT_BaseCombatWeapon.m_iViewModelIndex) = value;                        }
@@ -2828,7 +2812,7 @@ namespace SharpSkin_dll
             public int m_iClip2 {                                get => *(int*)(addr + Offset.DT_BaseCombatWeapon.m_iClip2);                                 set => *(int*)(addr + Offset.DT_BaseCombatWeapon.m_iClip2) = value;                                 }
             public int m_iPrimaryReserveAmmoCount {              get => *(int*)(addr + Offset.DT_BaseCombatWeapon.m_iPrimaryReserveAmmoCount);               set => *(int*)(addr + Offset.DT_BaseCombatWeapon.m_iPrimaryReserveAmmoCount) = value;               }
             public int m_iSecondaryReserveAmmoCount {            get => *(int*)(addr + Offset.DT_BaseCombatWeapon.m_iSecondaryReserveAmmoCount);             set => *(int*)(addr + Offset.DT_BaseCombatWeapon.m_iSecondaryReserveAmmoCount) = value;             }
-            public int m_hWeaponWorldModel {                     get => *(int*)(addr + Offset.DT_BaseCombatWeapon.m_hWeaponWorldModel);                      set => *(int*)(addr + Offset.DT_BaseCombatWeapon.m_hWeaponWorldModel) = value;                      }
+            public IntPtr m_hWeaponWorldModel {                  get => *(IntPtr*)(addr + Offset.DT_BaseCombatWeapon.m_hWeaponWorldModel);                   set => *(IntPtr*)(addr + Offset.DT_BaseCombatWeapon.m_hWeaponWorldModel) = value;                      }
             public int m_iNumEmptyAttacks {                      get => *(int*)(addr + Offset.DT_BaseCombatWeapon.m_iNumEmptyAttacks);                       set => *(int*)(addr + Offset.DT_BaseCombatWeapon.m_iNumEmptyAttacks) = value;                       }
             public int m_iPrimaryAmmoType {                      get => *(int*)(addr + Offset.DT_BaseCombatWeapon.m_iPrimaryAmmoType);                       set => *(int*)(addr + Offset.DT_BaseCombatWeapon.m_iPrimaryAmmoType) = value;                       }
             public int m_iSecondaryAmmoType {                    get => *(int*)(addr + Offset.DT_BaseCombatWeapon.m_iSecondaryAmmoType);                     set => *(int*)(addr + Offset.DT_BaseCombatWeapon.m_iSecondaryAmmoType) = value;                     }

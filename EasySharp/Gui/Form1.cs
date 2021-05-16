@@ -16,8 +16,8 @@ namespace SharpSkin_dll
         {
             InitializeComponent();
 
-            weapons1.Show();
-            knife1.Hide();
+            weapons1.Hide();
+            knife1.Show();
             hax1.Hide();
             profile1.Hide();
             hax2.Hide();
@@ -61,7 +61,7 @@ namespace SharpSkin_dll
         {
             if (dragging)
             {
-                Point dif = Point.Subtract(Cursor.Position, new Size(dragCursorPoint));
+                var dif = Point.Subtract(Cursor.Position, new Size(dragCursorPoint));
                 Location = Point.Add(dragFormPoint, new Size(dif));
             }
         }
@@ -113,11 +113,6 @@ namespace SharpSkin_dll
             chams1.Hide();
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button5_Click(object sender, EventArgs e)
         {
             weapons1.Hide();
@@ -126,11 +121,6 @@ namespace SharpSkin_dll
             profile1.Hide();
             hax2.Show();
             chams1.Hide();
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void button6_Click(object sender, EventArgs e)

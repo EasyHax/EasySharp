@@ -22,12 +22,12 @@ namespace SharpSkin_dll
 
         public MaterialSystem((IntPtr, IntPtr, int) infos) : base(infos)
         {
-            createMaterial = WrapVFunc(83, t_IntPtr, t_String, t_IntPtr);
-            findMaterial = WrapVFunc(84, t_IntPtr, t_String, t_String);
-            firstMaterial = WrapVFunc(86, t_Ushort);
-            nextMaterial = WrapVFunc(87, t_Ushort, t_Ushort);
+            createMaterial  = WrapVFunc(83, t_IntPtr, t_String, t_IntPtr);
+            findMaterial    = WrapVFunc(84, t_IntPtr, t_String, t_String);
+            firstMaterial   = WrapVFunc(86, t_Ushort);
+            nextMaterial    = WrapVFunc(87, t_Ushort, t_Ushort);
             invalidMaterial = WrapVFunc(88, t_Ushort);
-            getMaterial = WrapVFunc(89, t_Ushort, t_Ushort);
+            getMaterial     = WrapVFunc(89, t_Ushort, t_Ushort);
         }
 
         public IMaterial CreateMaterial(string materialName, IntPtr KeyValues) => (IntPtr)createMaterial.DynamicInvoke(addr, materialName, KeyValues);
