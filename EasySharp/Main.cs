@@ -245,7 +245,7 @@ namespace SharpSkin_dll
 
         public static void RandomTheme()
         {
-            Config.gui_theme = "purple";
+            Config.gui_theme = "random";
             var c1 = RandomColor();
             var c2 = RandomColor();
             var c3 = RandomColor();

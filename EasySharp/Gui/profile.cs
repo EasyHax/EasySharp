@@ -101,7 +101,7 @@ namespace SharpSkin_dll
         static Dictionary<string, object> cfg = new Dictionary<string, object>();   
         static List<string> new_lines = new List<string>();
 
-        public static string gui_theme;
+        public static string gui_theme = "dark";
 
         public static void Load(string filename)
         {
