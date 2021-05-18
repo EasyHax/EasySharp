@@ -98,8 +98,10 @@ namespace SharpSkin_dll
     static class Config
     {
         static readonly string config_path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\SharpSkin\\";
-        static Dictionary<string, object> cfg = new Dictionary<string, object>();
+        static Dictionary<string, object> cfg = new Dictionary<string, object>();   
         static List<string> new_lines = new List<string>();
+
+        public static string gui_theme;
 
         public static void Load(string filename)
         {
@@ -138,19 +140,22 @@ namespace SharpSkin_dll
                 }
             }
 
+            // GUI THEME                                     =============================
+            if (try_get_var<string>("gui_theme", out gui_theme)) LoadTheme();
+
             // AIMBOT                                     =============================
             //form.hax1.aim_enabled.Checked                 = get_var<bool>("aimbot_enabled");
             //form.hax1._aim_key                            = get_key("aimbot_key");
             //form.hax1.aim_key.Text                        = get_var<string>("aimbot_key");
             //form.hax1._aim_smooth                         = get_var<float>("aimbot_smooth");
 
-            // TRIGGERBOT                                 =========================
-            //form.hax1.trigger_enabled.Checked             = get_var<bool>("trigger_enabled");
-            //form.hax1._trigger_key                        = get_key("trigger_key");
-            //form.hax1.trigger_key.Text                    = get_var<string>("trigger_key");
-            //form.hax1._trigger_delay                      = get_var<int>("trigger_delay");
+                // TRIGGERBOT                                 =========================
+                //form.hax1.trigger_enabled.Checked             = get_var<bool>("trigger_enabled");
+                //form.hax1._trigger_key                        = get_key("trigger_key");
+                //form.hax1.trigger_key.Text                    = get_var<string>("trigger_key");
+                //form.hax1._trigger_delay                      = get_var<int>("trigger_delay");
 
-            // CHAMS                                      ==============================
+                // CHAMS                                      ==============================
             form.chams1.chams_enabled.Checked = get_var<bool>("chams_enabled");
 
             form.chams1.weapon_mcolor_enabled.Checked = get_var<bool>("chams_w_mcolor_enabled");
@@ -178,11 +183,24 @@ namespace SharpSkin_dll
             form.chams1.alpha_sleeves_value.Text = Math.Round(form.chams1.alpha_gloves.Value / 255f, 4).ToString();
             form.chams1.alpha_gloves.Value = get_var<int>("chams_g_alpha");
             form.chams1.alpha_gloves_value.Text = Math.Round(form.chams1.alpha_sleeves.Value / 255f, 4).ToString();
+
+            SkinChanger.ForceFullUpdate();
+        }
+
+        public static void LoadTheme()
+        {
+            if      (gui_theme == "purple") GuiTheme.PurpleTheme();
+            else if (gui_theme == "dark"  ) GuiTheme.DarkTheme  ();
+            else if (gui_theme == "random") GuiTheme.RandomTheme();
+            else if (gui_theme == "cyan"  ) GuiTheme.CyanTheme  ();
         }
 
         public static void Save(string filename)
         {
             new_lines.Clear();
+
+            // GUI THEME =============================
+            add("gui_theme", gui_theme);
 
             // AIMBOT =============================
             //add("aimbot_enabled", form.hax1.aim_enabled.Checked);
@@ -240,8 +258,25 @@ namespace SharpSkin_dll
             form.profile1.list_configs.Items.AddRange(names);
         }
 
-        public static VirtualKeys get_key(string var_name) { Enum.TryParse<VirtualKeys>(var_name, out var key); return key; }
+        public static VirtualKeys get_key(string var_name) 
+        { 
+            Enum.TryParse<VirtualKeys>(var_name, out var key); 
+            return key; 
+        }
+
         public static T get_var<T>(string var_name) => (T)Convert.ChangeType(cfg[var_name], typeof(T));
+
+        public static bool try_get_var<T>(string var_name, out T var)
+        {
+            if (cfg.ContainsKey(var_name)) 
+            {
+                var = get_var<T>(var_name);
+                return true;
+            }
+            var = default(T);
+            return false;
+        }
+
         public static void add(string key, object value) => new_lines.Add(string.Format($"{key}#{value}"));
 
         public static void addKit( WeaponKit weaponKit, string tag = "[kit]" ) => 

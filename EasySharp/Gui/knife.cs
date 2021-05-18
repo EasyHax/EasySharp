@@ -136,6 +136,7 @@ namespace SharpSkin_dll
 
                 gloveKit = new WeaponKit() { weapon = (string)gloves_list.SelectedItem, customname = string.Empty };
                 list_sets.Items.AddNewKit(gloveKit, "gloves:");
+                ForceFullUpdate();
                 return;
             }
 
@@ -155,6 +156,7 @@ namespace SharpSkin_dll
                 list_sets.Items.RemoveAt(list_sets.FindString("gloves"));
 
             list_sets.Items.AddNewKit(gloveKit, "gloves:");
+            ForceFullUpdate();
         }
 
         private void skins_list_SelectedIndexChanged(object sender, EventArgs e)
@@ -175,6 +177,7 @@ namespace SharpSkin_dll
                 list_sets.Items.RemoveAt(list_sets.FindString("knife"));
 
             list_sets.Items.AddNewKit(knifeKit, "knife:");
+            ForceFullUpdate();
         }
 
         private void trackBar1_Scroll(object sender, EventArgs e)
@@ -198,6 +201,7 @@ namespace SharpSkin_dll
                 };
 
                 list_sets.Items.AddNewKit(knifeKit, "knife:");
+                ForceFullUpdate();
                 return;
             }
 

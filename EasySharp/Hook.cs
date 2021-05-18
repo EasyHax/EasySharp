@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 
 using static SharpSkin_dll.SharpSkin;
+using static SharpSkin_dll.Structs;
 
 namespace SharpSkin_dll
 {
@@ -12,10 +13,10 @@ namespace SharpSkin_dll
         private IntPtr original_addr;
         private IntPtr old_value;
 
-        unsafe public EzyHook(int index, IntPtr baseaddr, T callback_func, out T original_func)
+        unsafe public EzyHook(int index, baseInterface baseaddr, T callback_func, out T original_func)
         {
             var callback_addr = Marshal.GetFunctionPointerForDelegate(callback_func);
-            original_addr = *(IntPtr*)baseaddr + index * 4;
+            original_addr = *(IntPtr*)baseaddr.addr + index * 4;
             old_value = *(IntPtr*)original_addr;
             original_func = Marshal.GetDelegateForFunctionPointer<T>(old_value);
             WinApi.VirtualProtect(original_addr, 4, 0x40, out int lpflOldProtect);
@@ -63,19 +64,22 @@ namespace SharpSkin_dll
         public static FindModel o_FindModel;
         public static FindModel hkFindModel_callback = new FindModel(hkFindModel);
 
-        [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-        unsafe public delegate void SetViewModelSequence(IntPtr addr, CRecvProxyData* pDataConst, IntPtr pStruct, IntPtr pOut);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        unsafe public delegate void SetViewModelSequence(CRecvProxyData* pConstData, IntPtr pViewModel, IntPtr pOut);
         unsafe public static SetViewModelSequence o_SetViewModelSequence;
         unsafe public static SetViewModelSequence hkSetViewModelSequence_callback = new SetViewModelSequence(hkSetViewModelSequence);
 
-        unsafe public static void hkSetViewModelSequence(IntPtr addr, CRecvProxyData* pDataConst, IntPtr pStruct, IntPtr pOut)
+        unsafe public static void hkSetViewModelSequence(CRecvProxyData* pConstData, IntPtr pViewModel, IntPtr pOut)
         {
-            var Data = new CRecvProxyData();
-            Data = *pDataConst;
-            var pData = &Data;
+            //var Data = new CRecvProxyData();
+            //Data = *pConstData;
+            //var pData = &Data;
 
-            FixSequence.Do(pData, pStruct);
-            o_SetViewModelSequence(addr, pData, pStruct, pOut);
+            //Console.WriteLine("1");
+
+
+            FixSequence.Do(pConstData, pViewModel);
+            o_SetViewModelSequence(pConstData, pViewModel, pOut);
         }
 
         //static bool done = false;
@@ -152,7 +156,7 @@ namespace SharpSkin_dll
         {
             o_PaintTraverse(addr, panel, forceRepaint, allowForce);
 
-            
+
             if (!ProxyHook.bHooked && g_Engine.IsInGame() && g_LocalPlayer && g_LocalPlayer.isAlive)
                 ProxyHook.Hook();
             if (ProxyHook.bHooked && !g_Engine.IsInGame())

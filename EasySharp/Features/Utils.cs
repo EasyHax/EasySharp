@@ -42,7 +42,7 @@ namespace SharpSkin_dll
             return players;
         }
 
-        public static IEnumerable<BasePlayer> GetEnemies() => GetPlayers().Where( x => x.isEnemy ).ToArray();
+        public static IEnumerable<BasePlayer> GetEnemies() => GetPlayers().Where( x => x.isEnemy );
 
         public static bool GetClosest( IEnumerable<BasePlayer> to_list, Hitboxes hitbox_to, out BasePlayer enemy, out Vector atAngle )
         {

@@ -25,7 +25,7 @@ namespace SharpSkin_dll
 
     unsafe static class SkinChanger
     {
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         delegate IntPtr d_CreateWearableFn(int entry, int serial);
 
         public static void InitModel()
@@ -233,7 +233,7 @@ namespace SharpSkin_dll
 
         public static void ForceFullUpdate()
         {
-            *(int*)(g_ClientState + 0x174) = -1;
+            SharpSkin.g_Engine.ClientCmd_Unrestricted("cl_fullupdate 1");
         }
     }
 }

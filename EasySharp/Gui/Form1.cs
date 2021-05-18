@@ -103,16 +103,6 @@ namespace SharpSkin_dll
             chams1.Hide();
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-            weapons1.Hide();
-            knife1.Hide();
-            hax1.Hide();
-            profile1.Show();
-            hax2.Hide();
-            chams1.Hide();
-        }
-
         private void button5_Click(object sender, EventArgs e)
         {
             weapons1.Hide();
@@ -131,6 +121,31 @@ namespace SharpSkin_dll
             profile1.Hide();
             hax2.Hide();
             chams1.Show();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            SharpSkin.g_Engine.ClientCmd_Unrestricted("cl_fullupdate 1");
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            weapons1.Hide();
+            knife1.Hide();
+            hax1.Hide();
+            profile1.Show();
+            hax2.Hide();
+            chams1.Hide();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+            SkinChanger.ForceFullUpdate();
         }
     }
 }

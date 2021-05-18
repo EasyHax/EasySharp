@@ -241,7 +241,7 @@
     </Compile>
     <Compile Include="Main.cs" />
     <Compile Include="Memory.cs" />
-    <Compile Include="Parser.cs" />
+    <Compile Include="Utils\Parser.cs" />
     <Compile Include="Gui\profile.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -263,7 +263,7 @@
       <DependentUpon>weapons.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils\VpkParser.cs" />
-    <Compile Include="WinApi.cs" />
+    <Compile Include="Utils\WinApi.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

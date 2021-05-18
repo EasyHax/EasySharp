@@ -13,17 +13,16 @@ namespace SharpSkin_dll
 {
     class FixSequence
     {
-        unsafe public static void Do( CRecvProxyData* pData, IntPtr pStruct )
+        unsafe public static void Do( CRecvProxyData* pData, BaseViewModel pViewModel)
         {
-            if ( !g_LocalPlayer || !g_LocalPlayer.isAlive )
-                return;
-
-            var pViewModel = (BaseViewModel)pStruct;
-
-            if ( !pViewModel )
+            if ( !g_LocalPlayer || !g_LocalPlayer.isAlive || !pViewModel )
                 return;
 
             var entity = (BasePlayer)g_Entity.GetClientEntityFromHandle((IntPtr)pViewModel.m_hOwner);
+
+            if ( !entity )
+                return;
+
             if ( entity.EntIndex() != g_Engine.GetLocalPlayer() )
                 return;
 

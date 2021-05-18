@@ -9,7 +9,7 @@ using static SharpSkin_dll.GenericInterop;
 
 namespace SharpSkin_dll
 {
-    class baseInterface
+    public class baseInterface
     {
         public IntPtr addr;
         public IntPtr mHandle;
@@ -25,8 +25,7 @@ namespace SharpSkin_dll
         public unsafe static IntPtr rf<T>(ref T o)
         {
             TypedReference tr = __makeref(o);
-            IntPtr ptr = *(IntPtr*)(&tr);
-            return ptr;
+            return *(IntPtr*)(&tr);
         }
 
         protected Delegate WrapVFunc(int index, Type return_Type, params Type[] args_Type) =>

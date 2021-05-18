@@ -141,11 +141,11 @@ namespace SharpSkin_dll
             Display.WriteLine("\n[!] Hooking game functions..", ConsoleColor.DarkYellow);
             // Uncomment what you need
 
-            hk_FrameStageNotify  = new EzyHook<FrameStageNotify>(37, g_Client.addr,    hkFrameStageNotify_callback, out o_FrameStageNotify);
-            //hk_CreateMove        = new EzyHook<CreateMove>      (22, g_Client.addr,    hkCreateMove_callback,       out o_CreateMove      );
-            hk_PaintTraverse     = new EzyHook<PaintTraverse>   (41, g_Panel.addr ,    hkPaintTraverse_callback,    out o_PaintTraverse   );
-            //hk_DrawModelExecute  = new EzyHook<DrawModelExecute>(21, g_MdlRender.addr, hkDrawModelExecute_callback, out o_DrawModelExecute);
-            //hk_FindModel         = new EzyHook<FindModel>       (10, g_MdlCache.addr,  hkFindModel_callback,        out o_FindModel       );
+            hk_FrameStageNotify = new EzyHook<FrameStageNotify>(37, g_Client, hkFrameStageNotify_callback,    out o_FrameStageNotify);
+            //hk_CreateMove       = new EzyHook<CreateMove>      (22, g_Client, hkCreateMove_callback,          out o_CreateMove      );
+            hk_PaintTraverse    = new EzyHook<PaintTraverse>   (41, g_Panel, hkPaintTraverse_callback,        out o_PaintTraverse   );
+            //hk_DrawModelExecute = new EzyHook<DrawModelExecute>(21, g_MdlRender, hkDrawModelExecute_callback, out o_DrawModelExecute);
+            //hk_FindModel        = new EzyHook<FindModel>       (10, g_MdlCache, hkFindModel_callback,         out o_FindModel       );
 
             Display.WriteLine("[+] Game functions hooked!\n", ConsoleColor.DarkYellow);
         }
@@ -199,7 +199,7 @@ namespace SharpSkin_dll
         }
     }
 
-    class GuiTheme
+    public class GuiTheme
     {
         //Default Theme
         public static Color clr_MenuPanel      = Color.FromArgb(97, 67, 91);
@@ -245,6 +245,7 @@ namespace SharpSkin_dll
 
         public static void RandomTheme()
         {
+            Config.gui_theme = "purple";
             var c1 = RandomColor();
             var c2 = RandomColor();
             var c3 = RandomColor();
@@ -255,6 +256,7 @@ namespace SharpSkin_dll
 
         public static void PurpleTheme()
         {
+            Config.gui_theme = "purple";
             var c1 = Color.FromArgb(97, 67, 91);
             var c2 = Color.FromArgb(50, 20, 60);
             var c3 = Color.FromArgb(90, 50, 80);
@@ -265,6 +267,7 @@ namespace SharpSkin_dll
 
         public static void CyanTheme()
         {
+            Config.gui_theme = "cyan";
             var c1 = Color.FromArgb(59, 117, 109);
             var c2 = Color.FromArgb(94, 125, 110);
             var c3 = Color.FromArgb(16, 97, 83);
@@ -275,6 +278,7 @@ namespace SharpSkin_dll
 
         public static void DarkTheme()
         {
+            Config.gui_theme = "dark";
             var c1 = Color.FromArgb(15, 15, 15);
             var c2 = Color.FromArgb(35, 35, 35);
             var c3 = Color.FromArgb(20, 20, 20);

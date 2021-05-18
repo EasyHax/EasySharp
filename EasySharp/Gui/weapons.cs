@@ -108,6 +108,8 @@ namespace SharpSkin_dll
 
             weaponKits.Add(weaponKit);
             list_sets.Items.AddNewKit(weaponKit);
+
+            ForceFullUpdate();
         }
 
         private void button2_Click(object sender, EventArgs e)
