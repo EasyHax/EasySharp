@@ -12,6 +12,22 @@ namespace SharpSkin_dll
         public static IntPtr VirtualAddress(this IntPtr addr, int index) => *(IntPtr*)(*(IntPtr*)(addr) + index * 4);
         public static IntPtr FunctionToPointer<T>(T func) where T : class => Marshal.GetFunctionPointerForDelegate<T>(func);
 
+        unsafe public static void Memcpy( byte[] bytes, IntPtr dest ) // faster than Marshal.Copy
+        {
+            for ( int i = 0; i < bytes.Length; ++i )
+                *(byte*)( dest + i ) = bytes[i];
+        }
+
+        unsafe public static byte[] Memcpy( IntPtr source, int len ) // faster than Marshal.Copy
+        {
+            var bytes = new byte[len];
+
+            for ( int i = 0; i < len; ++i )
+                bytes[i] = *(byte*)( source + i );
+
+            return bytes;
+        }
+
         public static IntPtr PatternScan(IntPtr addr, int length, string signature)
         {
 

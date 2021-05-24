@@ -136,29 +136,29 @@ namespace SharpSkin_dll
             GuiTheme.DarkTheme();
             Config.Refresh();
 
-            //ProxyHook.Hook();
+            ProxyHook.Hook();
 
             Display.WriteLine("\n[!] Hooking game functions..", ConsoleColor.DarkYellow);
-            // Uncomment what you need
 
-            hk_FrameStageNotify = new EzyHook<FrameStageNotify>(37, g_Client, hkFrameStageNotify_callback,    out o_FrameStageNotify);
-            //hk_CreateMove       = new EzyHook<CreateMove>      (22, g_Client, hkCreateMove_callback,          out o_CreateMove      );
-            hk_PaintTraverse    = new EzyHook<PaintTraverse>   (41, g_Panel, hkPaintTraverse_callback,        out o_PaintTraverse   );
-            //hk_DrawModelExecute = new EzyHook<DrawModelExecute>(21, g_MdlRender, hkDrawModelExecute_callback, out o_DrawModelExecute);
-            //hk_FindModel        = new EzyHook<FindModel>       (10, g_MdlCache, hkFindModel_callback,         out o_FindModel       );
+            hk_FrameStageNotify = new HookEngine<FrameStageNotify>( g_Client   , 37, 9, hkFrameStageNotify_callback );
+
+            //hk_PaintTraverse    = new HookEngine<PaintTraverse>   ( g_Panel    , 41, 8, hkPaintTraverse_callback    );
+            //hk_CreateMove       = new HookEngine<CreateMove>      ( g_Client   , 22, 6, hkCreateMove_callback       );
+            //hk_DrawModelExecute = new HookEngine<DrawModelExecute>( g_MdlRender, 21, 6, hkDrawModelExecute_callback );
+            //hk_FindModel        = new HookEngine<FindModel>       ( g_MdlCache , 10, 9, hkFindModel_callback        );
 
             Display.WriteLine("[+] Game functions hooked!\n", ConsoleColor.DarkYellow);
         }
 
         public static void Dispose()
         {
-            ProxyHook.UnHook();
+            hk_SetViewModelSequence.Dispose();
 
-            if ( hk_FrameStageNotify != null ) hk_FrameStageNotify.UnHook();
-            if ( hk_CreateMove       != null ) hk_CreateMove      .UnHook();
-            if ( hk_PaintTraverse    != null ) hk_PaintTraverse   .UnHook();
-            if ( hk_DrawModelExecute != null ) hk_DrawModelExecute.UnHook();
-            if ( hk_FindModel        != null ) hk_FindModel       .UnHook();
+            if ( hk_FrameStageNotify != null ) hk_FrameStageNotify.Dispose();
+            if ( hk_CreateMove       != null ) hk_CreateMove      .Dispose();
+            if ( hk_PaintTraverse    != null ) hk_PaintTraverse   .Dispose();
+            if ( hk_DrawModelExecute != null ) hk_DrawModelExecute.Dispose();
+            if ( hk_FindModel        != null ) hk_FindModel       .Dispose();
 
             form.Dispose();
             //WinApi.FreeConsole();

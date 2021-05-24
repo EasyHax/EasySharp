@@ -194,6 +194,8 @@
       <DependentUpon>chams.cs</DependentUpon>
     </Compile>
     <Compile Include="Features\Utils.cs" />
+    <Compile Include="Hooks\Hooks.cs" />
+    <Compile Include="Hooks\HookEngine.cs" />
     <Compile Include="Interfaces\baseInterface.cs" />
     <Compile Include="Interfaces\IClientNetworkable.cs" />
     <Compile Include="Interfaces\IClientRenderable.cs" />
@@ -222,7 +224,6 @@
     <Compile Include="Gui\hax2.Designer.cs">
       <DependentUpon>hax2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Hook.cs" />
     <Compile Include="Interface.cs" />
     <Compile Include="Interfaces\ILocalize.cs" />
     <Compile Include="Interfaces\IPanel.cs" />

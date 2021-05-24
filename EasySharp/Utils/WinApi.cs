@@ -38,7 +38,7 @@ namespace SharpSkin_dll
         public static extern IntPtr GetModuleHandle(string lpModuleName);
 
         [DllImport("kernel32.dll")]
-        public static extern bool VirtualProtect(IntPtr lpAddress, uint dwSize, int lpflNewProtect, out int lpflOldProtect);
+        public static extern bool VirtualProtect(IntPtr lpAddress, int dwSize, int lpflNewProtect, out int lpflOldProtect);
 
         [DllImport("user32.dll")]
         public static extern void mouse_event(MouseEventFlags dwFlags, int dx, int dy, uint dwData, int dwExtraInfo);

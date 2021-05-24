@@ -12,9 +12,7 @@ namespace SharpSkin_dll
 {
     unsafe class ProxyHook
     {
-        public static bool      bHooked = false;
-        public static RecvProp* o_pSequence_Prop;
-        public static IntPtr    o_ProxyFn;
+        public static bool bHooked = false;
 
         public static void Hook()
         {
@@ -31,22 +29,10 @@ namespace SharpSkin_dll
 
                 if (Marshal.PtrToStringAnsi((IntPtr)pProp->m_pVarName) == "m_nSequence")
                 {
-                    o_pSequence_Prop = pProp;
-                    o_ProxyFn = pProp->m_ProxyFn;
-                    o_SetViewModelSequence = Marshal.GetDelegateForFunctionPointer<SetViewModelSequence>(o_ProxyFn);
-                    pProp->m_ProxyFn = Marshal.GetFunctionPointerForDelegate(hkSetViewModelSequence_callback);
+                    hk_SetViewModelSequence = new HookEngine<SetViewModelSequence>( pProp->m_ProxyFn, hkSetViewModelSequence_callback, 7 );
                     bHooked = true;
                     break;
                 }
-            }
-        }
-
-        public static void UnHook()
-        {
-            if (bHooked)
-            {
-                o_pSequence_Prop->m_ProxyFn = o_ProxyFn;
-                bHooked = false;
             }
         }
     }
