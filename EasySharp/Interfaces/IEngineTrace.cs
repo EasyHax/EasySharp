@@ -25,10 +25,11 @@ namespace SharpSkin_dll
             var trace_t = new Trace_t();
             var filter_t = new TraceFilter();
             var ray_t = new Ray_t(p1.GetHitboxPos(Hitboxes.HITBOX_HEAD), p2.GetHitboxPos(Hitboxes.HITBOX_HEAD));
-            var vtable = new CTraceFilterVTable(Memory.FunctionToPointer<d_ShouldHitEntity>(filter_t.ShouldHitEntity), Memory.FunctionToPointer<d_GetTraceType>(filter_t.GetTraceType));
+            var vtable = new CTraceFilterVTable(
+                   Memory.FunctionToPointer<d_ShouldHitEntity>(filter_t.ShouldHitEntity), 
+                   Memory.FunctionToPointer<d_GetTraceType>(filter_t.GetTraceType)
+            );
 
-            vtable.pGetTraceType = Marshal.GetFunctionPointerForDelegate<d_GetTraceType>(filter_t.GetTraceType);
-            vtable.pShouldHitEntity = Marshal.GetFunctionPointerForDelegate<d_ShouldHitEntity>(filter_t.ShouldHitEntity);
             (filter_t.pVTable, filter_t.pSkip1) = ((IntPtr)(&vtable), p1.addr);
 
             return TraceRay(&ray_t, &filter_t, &trace_t, fMask);
