@@ -1,6 +1,6 @@
 # EasySharp
 
-A C# internal base for CSGO with an implemented skinchanger.
+A C# internal base (hack) for CSGO with an implemented skinchanger.
  
 ![PREVIEW](https://raw.githubusercontent.com/EasyHax/EasySharp/master/preview.png)
 
